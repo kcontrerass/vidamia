@@ -297,11 +297,11 @@ export default function Home() {
         </button>
         <button
           onClick={nextSlide}
-          className="absolute right-4 sm:right-8 top-[55%] -translate-y-1/2 z-30 p-2 rounded-full border border-white/40 hover:border-white text-white backdrop-blur-[2px] bg-black/5 hover:bg-black/25 transition-all duration-200 focus:outline-none active:scale-95"
+          className="absolute right-4 sm:right-8 top-[55%] -translate-y-1/2 z-30 p-2 rounded-full text-white transition-all duration-200 focus:outline-none active:scale-95"
           aria-label="Next slide"
         >
           <div className="w-8 h-8 relative">
-            <Image src={assets.arrowRight} alt="Arrow Right" fill />
+            <Image className="rotate-180  " src={assets.arrowRight} alt="Arrow Right" fill />
           </div>
         </button>
 
