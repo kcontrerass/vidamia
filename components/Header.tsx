@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -10,7 +11,7 @@ export default function Header() {
     <header className="absolute top-0 left-0 right-0 z-50 h-[80px] sm:h-[90px] md:h-[106px] bg-transparent border-b border-white/20 flex items-center">
       <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="relative w-28 sm:w-36 md:w-48 h-10 sm:h-12 hover:scale-105 transition-transform duration-200">
+        <Link href="/" className="relative w-28 sm:w-36 md:w-48 h-10 sm:h-12 hover:scale-105 transition-transform duration-200">
           <Image
             src="/assets/9e7da1f34b321d13277dec961b81b343ff15ef2f.svg"
             alt="Vida Mía Logo"
@@ -18,26 +19,26 @@ export default function Header() {
             className="object-contain"
             priority
           />
-        </a>
+        </Link>
 
         {/* Desktop Navigation Links */}
         <nav className="hidden md:flex items-center gap-8 text-[13px] sm:text-[14px] font-bold text-white tracking-[2.5px] uppercase">
-          <a href="#" className="hover:text-amber-200 transition-colors duration-200 relative group">
+          <Link href="/" className="hover:text-amber-200 transition-colors duration-200 relative group">
             Inicio
             <span className="absolute bottom-[-4px] left-0 w-full h-[2px] bg-amber-200 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200" />
-          </a>
-          <a href="#nosotros" className="hover:text-amber-200 transition-colors duration-200 relative group">
+          </Link>
+          <Link href="/#nosotros" className="hover:text-amber-200 transition-colors duration-200 relative group">
             Quiénes Somos
             <span className="absolute bottom-[-4px] left-0 w-full h-[2px] bg-amber-200 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200" />
-          </a>
-          <a href="#menu" className="hover:text-amber-200 transition-colors duration-200 relative group">
+          </Link>
+          <Link href="/#menu" className="hover:text-amber-200 transition-colors duration-200 relative group">
             Menú
             <span className="absolute bottom-[-4px] left-0 w-full h-[2px] bg-amber-200 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200" />
-          </a>
-          <a href="#ubicaciones" className="hover:text-amber-200 transition-colors duration-200 relative group">
+          </Link>
+          <Link href="/ubicaciones" className="hover:text-amber-200 transition-colors duration-200 relative group">
             Ubicaciones
             <span className="absolute bottom-[-4px] left-0 w-full h-[2px] bg-amber-200 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200" />
-          </a>
+          </Link>
         </nav>
 
         {/* Desktop Call to Action Button */}
@@ -73,36 +74,36 @@ export default function Header() {
 
       {/* Mobile Navigation Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden absolute top-[106px] left-0 right-0 bg-[#c9956d] shadow-lg border-t border-white/10 z-50">
+        <div className="md:hidden absolute top-[80px] sm:top-[90px] left-0 right-0 bg-[#c9956d] shadow-lg border-t border-white/10 z-50">
           <nav className="flex flex-col px-6 py-8 gap-6 text-[15px] font-bold text-white tracking-[3px] uppercase">
-            <a
-              href="#"
+            <Link
+              href="/"
               onClick={() => setMobileMenuOpen(false)}
               className="hover:text-amber-200 transition-colors py-2 border-b border-white/5"
             >
               Inicio
-            </a>
-            <a
-              href="#nosotros"
+            </Link>
+            <Link
+              href="/#nosotros"
               onClick={() => setMobileMenuOpen(false)}
               className="hover:text-amber-200 transition-colors py-2 border-b border-white/5"
             >
               Quiénes Somos
-            </a>
-            <a
-              href="#menu"
+            </Link>
+            <Link
+              href="/#menu"
               onClick={() => setMobileMenuOpen(false)}
               className="hover:text-amber-200 transition-colors py-2 border-b border-white/5"
             >
               Menú
-            </a>
-            <a
-              href="#ubicaciones"
+            </Link>
+            <Link
+              href="/ubicaciones"
               onClick={() => setMobileMenuOpen(false)}
               className="hover:text-amber-200 transition-colors py-2 border-b border-white/5"
             >
               Ubicaciones
-            </a>
+            </Link>
             <a
               href="https://wa.me/50325119609"
               target="_blank"
