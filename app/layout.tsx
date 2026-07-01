@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Montserrat, Quicksand, Playfair_Display } from "next/font/google";
+import { Montserrat, Quicksand, Playfair_Display, Dancing_Script } from "next/font/google";
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -21,6 +21,12 @@ const playfairDisplay = Playfair_Display({
   style: ["normal", "italic"],
 });
 
+const dancingScript = Dancing_Script({
+  variable: "--font-script",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
 export const metadata: Metadata = {
   title: "Vida Mía Pastelería & Bistro Café",
   description: "Una experiencia única de sabor - Pan hecho en casa y repostería artesanal.",
@@ -34,7 +40,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${montserrat.variable} ${quicksand.variable} ${playfairDisplay.variable} h-full antialiased`}
+      className={`${montserrat.variable} ${quicksand.variable} ${playfairDisplay.variable} ${dancingScript.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
