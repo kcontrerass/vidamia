@@ -358,10 +358,10 @@ export default function Home() {
         {/* Polaroid Left - Extends outside screen */}
         <div className="hidden lg:block absolute left-[-100px] xl:left-[-60px] top-[50%] -translate-y-1/2 z-20">
           <div className="relative w-[280px] lg:w-[340px] xl:w-[400px]">
-            {/* Shadow layer */}
-            <div className="absolute top-[20px] left-[20px] bg-[#672b17] w-full h-[340px] lg:h-[400px] xl:h-[450px] transform rotate-[-7deg]" />
-            <div className="relative bg-white p-3 pb-12 shadow-[0px_4px_24px_rgba(0,0,0,0.55)] transform rotate-[-15deg]">
-              <div className="relative w-full h-[280px] lg:h-[340px] xl:h-[380px] overflow-hidden">
+            {/* Shadow layer - slightly more rotated */}
+            <div className="absolute top-[0px] left-[10px] bg-[#672b17] w-full h-[340px] lg:h-[300px] xl:h-[390px] transform rotate-[-5deg] " />
+            <div className="relative bg-white p-[6px]  shadow-[0px_2px_12px_rgba(0,0,0,0.25)] transform rotate-[-15deg]">
+              <div className="relative w-full h-[300px] lg:h-[360px] xl:h-[400px] overflow-hidden">
                 <Image src={assets.polaroidLeft} alt="Nuestros panaderos artesanales" fill className="object-cover" />
               </div>
             </div>
@@ -371,10 +371,10 @@ export default function Home() {
         {/* Polaroid Right - Extends outside screen */}
         <div className="hidden lg:block absolute right-[-100px] xl:right-[-60px] top-[40%] -translate-y-1/2 z-20">
           <div className="relative w-[280px] lg:w-[340px] xl:w-[400px]">
-            {/* Shadow layer */}
-            <div className="absolute top-[20px] right-[20px] bg-[#4156a9] w-full h-[340px] lg:h-[400px] xl:h-[450px] transform rotate-[17deg]" />
-            <div className="relative bg-white p-3 pb-12 shadow-[0px_4px_24px_rgba(0,0,0,0.55)] transform rotate-[9deg]">
-              <div className="relative w-full h-[280px] lg:h-[340px] xl:h-[380px] overflow-hidden">
+            {/* Shadow layer - slightly more rotated */}
+            <div className="absolute top-[-10px] right-[10px] bg-[#4156a9] w-full h-[340px] lg:h-[400px] xl:h-[400px] transform rotate-[12deg] " />
+            <div className="relative bg-white p-[6px]  shadow-[0px_2px_12px_rgba(0,0,0,0.25)] transform rotate-[9deg]">
+              <div className="relative w-full h-[300px] lg:h-[360px] xl:h-[400px] overflow-hidden">
                 <Image src={assets.polaroidRight} alt="Disfrutando en el bistro" fill className="object-cover" />
               </div>
             </div>
