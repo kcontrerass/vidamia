@@ -1,19 +1,22 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, Suspense } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 import Header from "@/components/Header";
 
 const assets = {
   heroBg: "/assets/reservations-hero-bg.jpg",
   phoneIcon: "/assets/5ffd90a8f0a372d2321bffd9dba6a2f94bbc65a0.svg",
   socialsIcon: "/assets/e36456f60cf6a6ff2b091416446046b00687e7a4.svg",
+  logoWhite: "/assets/vida-mia-logo-white.png",
   // Gallery images - interior bistro photos
-  gallery1: "/assets/gallery-1.jpg", // Interior con decoración
-  gallery2: "/assets/gallery-2.jpg", // Exterior con estacionamiento
-  gallery3: "/assets/gallery-3.jpg", // Interior con clientes
-  gallery4: "/assets/gallery-4.jpg", // Mostrador de postres
-  gallery5: "/assets/gallery-5.jpg", // Interior con clientes
+  gallery1: "/assets/gallery-1.jpg",
+  gallery2: "/assets/gallery-2.jpg",
+  gallery3: "/assets/gallery-3.jpg",
+  gallery4: "/assets/gallery-4.jpg",
+  gallery5: "/assets/gallery-5.jpg",
 };
 
 const LOCATIONS = [
@@ -25,18 +28,23 @@ const LOCATIONS = [
   { id: "opico", name: "Vida Mía | Opico" },
 ];
 
-export default function Reservaciones() {
+function ReservacionesContent() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const initialSucursal = searchParams.get("sucursal") || "";
+  
   const [formData, setFormData] = useState({
     nombre: "",
     telefono: "",
     correo: "",
-    sucursal: "",
+    sucursal: initialSucursal,
     fecha: "",
     horario: "",
     personas: 1,
     ocasion: "",
     comentarios: "",
   });
+  const [showConfirmation, setShowConfirmation] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -53,6 +61,12 @@ export default function Reservaciones() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Reservation submitted:", formData);
+    setShowConfirmation(true);
+  };
+
+  const handleCloseConfirmation = () => {
+    setShowConfirmation(false);
+    router.push("/");
   };
 
   return (
@@ -117,19 +131,19 @@ export default function Reservaciones() {
           </h1>
 
           {/* CTA Button */}
-          <a
+          <Link
             href="#reserva-form"
             className="backdrop-blur-[2px] bg-black/14 border border-white text-white w-[180px] sm:w-[200px] md:w-[228px] h-[48px] sm:h-[54px] flex items-center justify-center tracking-[2px] sm:tracking-[3px] font-semibold text-[13px] sm:text-[15px] uppercase hover:bg-white hover:text-[#8f4027] transition-all duration-300 active:scale-95 shadow-md"
           >
             ¡RESERVA AQUÍ!
-          </a>
+          </Link>
         </div>
       </section>
 
       {/* RESERVATION FORM SECTION */}
       <section id="reserva-form" className="relative w-full">
         {/* Form Card - Positioned overlapping hero */}
-        <div className="relative z-30 mx-auto max-w-[731px] -mt-[200px] sm:-mt-[280px] lg:-mt-[316px]">
+        <div className="relative z-30 mx-auto max-w-[731px] -mt-[120px] sm:-mt-[180px] lg:-mt-[220px]">
           <div 
             className="backdrop-blur-[117px] bg-white/84 border border-white/50 shadow-[0px_4px_84px_rgba(0,0,0,0.09)] mx-4 sm:mx-6 lg:mx-0"
             style={{ minHeight: '900px' }}
@@ -535,9 +549,9 @@ export default function Reservaciones() {
                 </p>
                 <div className="relative mt-4 h-[28px] w-[110px]">
                   <Image src={assets.socialsIcon} alt="Redes sociales" fill className="object-contain" />
-                  <a href="https://facebook.com/vidamia" target="_blank" rel="noopener noreferrer" className="absolute left-0 top-0 h-full w-1/3" aria-label="Facebook" />
-                  <a href="https://instagram.com/vidamia" target="_blank" rel="noopener noreferrer" className="absolute left-1/3 top-0 h-full w-1/3" aria-label="Instagram" />
-                  <a href="https://tiktok.com/@vidamia" target="_blank" rel="noopener noreferrer" className="absolute left-2/3 top-0 h-full w-1/3" aria-label="TikTok" />
+                  <a href="https://www.facebook.com/share/14g6nA8Z4oi/" target="_blank" rel="noopener noreferrer" className="absolute left-0 top-0 h-full w-1/3" aria-label="Facebook" />
+                  <a href="https://www.instagram.com/vidamiabistrocafe" target="_blank" rel="noopener noreferrer" className="absolute left-1/3 top-0 h-full w-1/3" aria-label="Instagram" />
+                  <a href="https://www.tiktok.com/@vidamiabistrocafe" target="_blank" rel="noopener noreferrer" className="absolute left-2/3 top-0 h-full w-1/3" aria-label="TikTok" />
                 </div>
               </div>
             </div>
@@ -567,6 +581,96 @@ export default function Reservaciones() {
           <path fillRule="evenodd" clipRule="evenodd" d="M18.3333 0C8.20783 0 0 8.20783 0 18.3333C0 21.7983 0.9625 25.0433 2.63633 27.808L1.001 33.3667C0.907105 33.6858 0.900927 34.0244 0.983115 34.3467C1.0653 34.6691 1.23282 34.9634 1.46806 35.1986C1.7033 35.4338 1.99757 35.6014 2.31993 35.6836C2.6423 35.7657 2.98085 35.7596 3.3 35.6657L8.85867 34.0303C11.7162 35.7593 14.9934 36.6712 18.3333 36.6667C28.4588 36.6667 36.6667 28.4588 36.6667 18.3333C36.6667 8.20783 28.4588 0 18.3333 0ZM14.1863 22.4822C17.8952 26.1892 21.4353 26.6787 22.6857 26.7245C24.5868 26.7942 26.4385 25.3422 27.159 23.6573C27.25 23.4477 27.283 23.2176 27.2546 22.9909C27.2262 22.7641 27.1375 22.5492 26.9977 22.3685C25.993 21.0852 24.6345 20.163 23.3072 19.2463C23.03 19.0547 22.6895 18.9778 22.3569 19.0319C22.0243 19.0859 21.7256 19.2665 21.5233 19.536L20.4233 21.2135C20.3655 21.3037 20.2754 21.3683 20.1714 21.3943C20.0675 21.4202 19.9576 21.4053 19.8642 21.3528C19.118 20.9257 18.0308 20.1997 17.2498 19.4187C16.4688 18.6377 15.7868 17.6 15.4037 16.9015C15.3562 16.8128 15.3424 16.7098 15.365 16.6117C15.3876 16.5136 15.445 16.427 15.5265 16.368L17.2205 15.1103C17.4623 14.9001 17.6183 14.6084 17.6588 14.2906C17.6994 13.9728 17.6217 13.6512 17.4405 13.387C16.6192 12.1843 15.6622 10.6553 14.2743 9.6415C14.0952 9.51171 13.8854 9.43078 13.6655 9.40667C13.4457 9.38256 13.2233 9.4161 13.0203 9.504C11.3337 10.2263 9.87433 12.078 9.944 13.9828C9.98983 15.2332 10.4793 18.7733 14.1863 22.4822Z" fill="white"/>
         </svg>
       </a>
+
+      {/* Confirmation Modal */}
+      {showConfirmation && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+          {/* Backdrop with blur */}
+          <div 
+            className="absolute inset-0 bg-black/40 backdrop-blur-sm animate-fadeIn"
+            onClick={handleCloseConfirmation}
+          />
+          
+          {/* Modal Content - centered */}
+          <div 
+            className="relative w-full max-w-[600px] animate-slideUp"
+          >
+            <div className="backdrop-blur-[37px] bg-[rgba(175,104,82,0.85)] border border-white/50 rounded-[20px] flex flex-col gap-4 items-center px-6 sm:px-10 py-10 sm:py-12 text-center">
+              {/* Logo */}
+              <div className="relative w-[100px] sm:w-[137px] h-[50px] sm:h-[67px]">
+                <Image
+                  src={assets.logoWhite}
+                  alt="Vida Mía"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+
+              {/* Title */}
+              <div className="flex flex-col items-center text-white">
+                <span className="font-quicksand font-semibold text-[13px] sm:text-[15px] tracking-[2px] sm:tracking-[3px] uppercase">
+                  ¡Tu reserva ha sido
+                </span>
+                <h3 
+                  className="text-[32px] sm:text-[45px] leading-none uppercase tracking-[-1px] sm:tracking-[-1.8px]"
+                  style={{ fontFamily: 'var(--font-montserrat), sans-serif', fontWeight: 900 }}
+                >
+                  CONFIRMADA!
+                </h3>
+              </div>
+
+              {/* Description */}
+              <p 
+                className="text-white/80 text-[14px] sm:text-[16px] leading-relaxed tracking-[-0.4px] max-w-[450px]"
+                style={{ fontFamily: 'var(--font-montserrat), sans-serif', fontWeight: 400 }}
+              >
+                Hemos recibido tu reserva correctamente.<br />
+                Te enviamos un correo electrónico con todos los detalles de tu visita. Por favor, revisa tu bandeja de entrada y, si no lo encuentras, verifica también tu carpeta de spam o correo no deseado.
+              </p>
+
+              {/* Button */}
+              <button
+                onClick={handleCloseConfirmation}
+                className="mt-2 backdrop-blur-[2px] bg-[#4156a9] text-white h-[48px] sm:h-[54px] px-6 sm:px-8 flex items-center justify-center tracking-[2px] sm:tracking-[3px] font-bold text-[13px] sm:text-[15px] uppercase hover:bg-[#354b94] transition-all duration-300 active:scale-95"
+              >
+                VOLVER AL INICIO
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Animation styles */}
+      <style jsx>{`
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        @keyframes slideUp {
+          from { 
+            transform: translateY(100%);
+            opacity: 0;
+          }
+          to { 
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out forwards;
+        }
+        .animate-slideUp {
+          animation: slideUp 0.4s ease-out forwards;
+        }
+      `}</style>
     </div>
+  );
+}
+
+export default function Reservaciones() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-white" />}>
+      <ReservacionesContent />
+    </Suspense>
   );
 }

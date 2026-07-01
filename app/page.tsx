@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import Header from "@/components/Header";
 
 // Image mapping from downloaded assets
@@ -407,12 +408,12 @@ export default function Home() {
               Con platillos basados en pan <strong className="font-bold">hecho en casa</strong>. Hemos creado un solo espacio donde <strong className="font-bold">hay de todo, para todas las vidas.</strong>
             </p>
 
-            <a
+            <Link
               href="#menu"
               className="backdrop-blur-[2px] bg-black/15 border-[0.5px] border-white w-[180px] sm:w-[200px] md:w-[228px] h-[48px] sm:h-[54px] flex items-center justify-center tracking-[2px] sm:tracking-[3px] font-semibold text-[13px] sm:text-[15px] uppercase text-white hover:bg-white hover:text-[#9c4c35] transition-all duration-300 active:scale-95 shadow-md"
             >
               ¡CONÓCENOS!
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -514,9 +515,9 @@ export default function Home() {
                       <div className="flex items-center gap-1">
                         <span className="font-montserrat font-bold text-[12px] sm:text-[13px] lg:text-[14px] text-[#af6852]">5 estrellas</span>
                       </div>
-                      <a href="#ubicaciones" className="font-montserrat font-normal text-[12px] sm:text-[13px] lg:text-[14px] text-[#7a4737] underline tracking-[-0.4px] hover:text-[#4156a9]">
+                      <Link href="#ubicaciones" className="font-montserrat font-normal text-[12px] sm:text-[13px] lg:text-[14px] text-[#7a4737] underline tracking-[-0.4px] hover:text-[#4156a9]">
                         Ver Ubicaciones
-                      </a>
+                      </Link>
                     </div>
                     {/* Stars visual */}
                     <div className="relative w-[100px] sm:w-[119px] h-[20px] sm:h-[23px]">
@@ -674,7 +675,7 @@ export default function Home() {
 
             <div className="flex-shrink-0 mt-4 sm:mt-0">
               <button className="bg-[#4156a9] text-white px-4 sm:px-6 py-3 sm:py-4 font-quicksand font-semibold text-[13px] sm:text-[15px] tracking-[2px] sm:tracking-[3px] uppercase shadow-md flex items-center justify-center hover:bg-brand-blue/90 transition-colors w-[180px] sm:w-[200px] md:w-[228px]">
-                IR A UBICACIONES
+                <Link href="/ubicaciones">IR A UBICACIONES</Link>
               </button>
             </div>
           </div>
@@ -759,9 +760,9 @@ export default function Home() {
                 </p>
                 <div className="relative mt-4 h-[28px] w-[110px]">
                   <Image src={assets.socialsIcon} alt="Redes sociales" fill className="object-contain" />
-                  <a href="https://facebook.com/vidamia" target="_blank" rel="noopener noreferrer" className="absolute left-0 top-0 h-full w-1/3" aria-label="Facebook" />
-                  <a href="https://instagram.com/vidamia" target="_blank" rel="noopener noreferrer" className="absolute left-1/3 top-0 h-full w-1/3" aria-label="Instagram" />
-                  <a href="https://tiktok.com/@vidamia" target="_blank" rel="noopener noreferrer" className="absolute left-2/3 top-0 h-full w-1/3" aria-label="TikTok" />
+                  <a href="https://www.facebook.com/share/14g6nA8Z4oi/" target="_blank" rel="noopener noreferrer" className="absolute left-0 top-0 h-full w-1/3" aria-label="Facebook" />
+                  <a href="https://www.instagram.com/vidamiabistrocafe" target="_blank" rel="noopener noreferrer" className="absolute left-1/3 top-0 h-full w-1/3" aria-label="Instagram" />
+                  <a href="https://www.tiktok.com/@vidamiabistrocafe" target="_blank" rel="noopener noreferrer" className="absolute left-2/3 top-0 h-full w-1/3" aria-label="TikTok" />
                 </div>
               </div>
             </div>

@@ -42,14 +42,12 @@ export default function Header() {
         </nav>
 
         {/* Desktop Call to Action Button */}
-        <a
-          href="https://wa.me/50325119609"
-          target="_blank"
-          rel="noopener noreferrer"
+        <Link
+          href="/reservaciones"
           className="hidden md:inline-flex border border-white hover:bg-white hover:text-terracotta text-white font-semibold text-[13px] tracking-[2.5px] uppercase px-6 py-3 transition-all duration-300 backdrop-blur-[2px] bg-white/5 active:scale-95"
         >
           COTIZA TU EVENTO
-        </a>
+        </Link>
 
         {/* Mobile Menu Button */}
         <button
@@ -104,14 +102,13 @@ export default function Header() {
             >
               Ubicaciones
             </Link>
-            <a
-              href="https://wa.me/50325119609"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/reservaciones"
+              onClick={() => setMobileMenuOpen(false)}
               className="inline-flex justify-center border border-white hover:bg-white hover:text-terracotta text-white font-semibold text-[14px] tracking-[2.5px] uppercase px-6 py-3 mt-4 transition-colors"
             >
               COTIZA TU EVENTO
-            </a>
+            </Link>
           </nav>
         </div>
       )}

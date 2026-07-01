@@ -2,11 +2,13 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import Header from "@/components/Header";
 
 const LOCATIONS = [
   {
     id: 1,
+    slug: "san-martin",
     name: "San Martín",
     address: "Carretera Panamericana Km. 15.5 Local Mini Ancla1. Centro Comercial El Encuentro San Martin, San Martin, San Salvador.",
     phone: "2258-0942",
@@ -16,6 +18,7 @@ const LOCATIONS = [
   },
   {
     id: 2,
+    slug: "valle-dulce",
     name: "Valle Dulce",
     address: "Centro Comercial El Encuentro Valle Dulce, Local Mini Ancla 07, Porción 1 Hacienda El Ángel, Apopa, San Salvador",
     phone: "2249-2151",
@@ -25,6 +28,7 @@ const LOCATIONS = [
   },
   {
     id: 3,
+    slug: "paseo-venecia",
     name: "Paseo Venecia",
     address: "Carretera de Oro Km 21, Local 24. Centro Comercial Paseo Venecia, Modulo D. Soyapango, San Salvador",
     phone: "2254-4556",
@@ -34,6 +38,7 @@ const LOCATIONS = [
   },
   {
     id: 4,
+    slug: "chalatenango",
     name: "Chalatenango",
     address: "6ta Calle Poniente, Barrio El Chile #A5-35, Chalatenango, Chalatenango",
     phone: "2301-2829",
@@ -43,6 +48,7 @@ const LOCATIONS = [
   },
   {
     id: 5,
+    slug: "aguilares",
     name: "El Encuentro Aguilares",
     address: "Calle a Suchitoto, Carretera Troncal del Norte, Local 36-37 Centro Comercial El Encuentro Aguilares, Aguilares, San Salvador",
     phone: "2398-8852",
@@ -52,6 +58,7 @@ const LOCATIONS = [
   },
   {
     id: 6,
+    slug: "opico",
     name: "El Encuentro Ópico",
     address: "Carretera Panamericana Local Mini Ancla 5, Centro Comercial El Encuentro Ópico, San Juan Ópico, La Libertad",
     phone: "2389-4700",
@@ -154,14 +161,12 @@ export default function UbicacionesPage() {
                 {/* Location Info Card */}
                 <div className="flex-grow w-full lg:max-w-[863px] bg-[rgba(184,115,77,0.13)] rounded-[6px] p-5 sm:p-6 lg:p-8 lg:pl-[80px] relative min-h-[280px] sm:min-h-[279px]">
                   {/* Reserva Button - positioned top right on desktop, inline on mobile */}
-                  <a
-                    href={`https://wa.me/503${location.phone.replace('-', '')}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <Link
+                    href={`/reservaciones?sucursal=${location.slug}`}
                     className="hidden md:flex absolute top-6 right-6 bg-[#4156a9] text-white px-5 py-3 font-quicksand font-semibold text-[15px] tracking-[3px] uppercase hover:bg-[#3a4d96] transition-colors backdrop-blur-[2px] items-center justify-center"
                   >
                     REALIZAR RESERVA
-                  </a>
+                  </Link>
 
                   {/* Title */}
                   <h3 className="font-montserrat text-[16px] sm:text-[20px] lg:text-[23px] text-[#6e3f31] tracking-[-1.15px] mb-3 md:pr-[200px]">
@@ -169,14 +174,12 @@ export default function UbicacionesPage() {
                   </h3>
 
                   {/* Mobile Reserva Button */}
-                  <a
-                    href={`https://wa.me/503${location.phone.replace('-', '')}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <Link
+                    href={`/reservaciones?sucursal=${location.slug}`}
                     className="md:hidden inline-flex mb-4 bg-[#4156a9] text-white px-4 py-2.5 font-quicksand font-semibold text-[12px] tracking-[2px] uppercase hover:bg-[#3a4d96] transition-colors"
                   >
                     REALIZAR RESERVA
-                  </a>
+                  </Link>
 
                   {/* Address */}
                   <p className="font-montserrat text-[13px] sm:text-[16px] text-[#7a4737] opacity-80 leading-[20px] sm:leading-[21px] tracking-[-0.48px] mb-5 sm:mb-6 max-w-[461px]">
@@ -299,9 +302,9 @@ export default function UbicacionesPage() {
                 </p>
                 <div className="relative mt-4 h-[28px] w-[110px]">
                   <Image src="/assets/e36456f60cf6a6ff2b091416446046b00687e7a4.svg" alt="Redes sociales" fill className="object-contain" />
-                  <a href="https://facebook.com/vidamia" target="_blank" rel="noopener noreferrer" className="absolute left-0 top-0 h-full w-1/3" aria-label="Facebook" />
-                  <a href="https://instagram.com/vidamia" target="_blank" rel="noopener noreferrer" className="absolute left-1/3 top-0 h-full w-1/3" aria-label="Instagram" />
-                  <a href="https://tiktok.com/@vidamia" target="_blank" rel="noopener noreferrer" className="absolute left-2/3 top-0 h-full w-1/3" aria-label="TikTok" />
+                  <a href="https://www.facebook.com/share/14g6nA8Z4oi/" target="_blank" rel="noopener noreferrer" className="absolute left-0 top-0 h-full w-1/3" aria-label="Facebook" />
+                  <a href="https://www.instagram.com/vidamiabistrocafe" target="_blank" rel="noopener noreferrer" className="absolute left-1/3 top-0 h-full w-1/3" aria-label="Instagram" />
+                  <a href="https://www.tiktok.com/@vidamiabistrocafe" target="_blank" rel="noopener noreferrer" className="absolute left-2/3 top-0 h-full w-1/3" aria-label="TikTok" />
                 </div>
               </div>
             </div>
