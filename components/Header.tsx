@@ -7,10 +7,10 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="absolute top-0 left-0 right-0 z-50 h-[106px] bg-transparent border-b border-white/20 flex items-center">
+    <header className="absolute top-0 left-0 right-0 z-50 h-[80px] sm:h-[90px] md:h-[106px] bg-transparent border-b border-white/20 flex items-center">
       <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="relative w-36 sm:w-48 h-12 hover:scale-105 transition-transform duration-200">
+        <a href="#" className="relative w-28 sm:w-36 md:w-48 h-10 sm:h-12 hover:scale-105 transition-transform duration-200">
           <Image
             src="/assets/9e7da1f34b321d13277dec961b81b343ff15ef2f.svg"
             alt="Vida Mía Logo"

@@ -31,7 +31,10 @@ const assets = {
   // Bistro shop / locations
   shopInterior: "/assets/c773a7e1ee50cf5640487f8feb442399b7ca59ee.png",
   shopInteriorLarge: "/assets/28c8a8d7f2ebc92249b6e33e4423aef103560b8d.png",
-  mapBg: "/assets/e74fe5d2951db596ef79a5aea2bd4bf175737053.png",
+  mapBg: "/assets/map-bg.png",
+  mapPinLarge: "/assets/map-pin-large.svg",
+  mapPinMedium: "/assets/map-pin-medium.svg",
+  mapPinSmall: "/assets/map-pin-small.svg",
 
   // Icons
   phoneIcon: "/assets/5ffd90a8f0a372d2321bffd9dba6a2f94bbc65a0.svg",
@@ -205,8 +208,8 @@ const MENU_DATA: Record<string, FoodItem[]> = {
 
 const HERO_IMAGES = [
   assets.heroBg,
-  assets.shopInteriorLarge,
-  assets.mapBg,
+  assets.heroBg,
+  assets.heroBg,
 ];
 
 export default function Home() {
@@ -235,12 +238,12 @@ export default function Home() {
       <Header />
 
       {/* HERO SLIDER SECTION - Matches exact height and placement */}
-      <section className="relative w-full h-[864px] overflow-hidden flex items-end justify-center">
+      <section className="relative w-full h-[100vh] min-h-[600px] max-h-[864px] overflow-hidden flex items-end justify-center">
         {/* Slides - Images positioned at the bottom of the section to match layout */}
         {HERO_IMAGES.map((imgSrc, idx) => (
           <div
             key={idx}
-            className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[1584px] h-full transition-opacity duration-1000 ease-in-out ${idx === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"
+            className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${idx === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"
               }`}
           >
             <Image
@@ -257,18 +260,18 @@ export default function Home() {
         <div className="absolute top-0 left-0 right-0 h-[300px] bg-gradient-to-b from-[#c9956d] via-[#c9956d]/80 to-transparent z-20 pointer-events-none" />
 
         {/* Hero Content Overlay - Perfectly positioned based on Figma coordinates */}
-        <div className="absolute top-[181px] left-0 right-0 z-25 text-center flex flex-col items-center px-4 w-full">
+        <div className="absolute inset-0 z-25 text-center flex flex-col items-center justify-center px-4 w-full">
           {/* Script accent row "una nueva" */}
-          <div className="flex items-center justify-center gap-6 mb-2 sm:mb-4 w-full max-w-[900px]">
+          <div className="flex items-center justify-center gap-2 sm:gap-4 md:gap-6 mb-2 sm:mb-4 w-auto">
             <span 
-              className="text-white text-[70px] sm:text-[85px] md:text-[95px] leading-none lowercase select-none"
+              className="text-white text-[26px] sm:text-[45px] md:text-[65px] lg:text-[85px] xl:text-[95px] leading-none lowercase select-none whitespace-nowrap"
               style={{ fontFamily: 'var(--font-script), cursive', fontWeight: 600 }}
             >
               una
             </span>
-            <div className="w-[150px] sm:w-[220px] md:w-[294px] h-[1px] bg-white opacity-80" />
+            <div className="w-[40px] sm:w-[80px] md:w-[140px] lg:w-[220px] xl:w-[294px] h-[1px] bg-white opacity-80 flex-shrink-0" />
             <span 
-              className="text-white text-[70px] sm:text-[85px] md:text-[95px] leading-none lowercase select-none"
+              className="text-white text-[26px] sm:text-[45px] md:text-[65px] lg:text-[85px] xl:text-[95px] leading-none lowercase select-none whitespace-nowrap"
               style={{ fontFamily: 'var(--font-script), cursive', fontWeight: 600 }}
             >
               nueva
@@ -277,8 +280,8 @@ export default function Home() {
 
           {/* Large Title */}
           <h1 
-            className="text-white text-[60px] sm:text-[90px] md:text-[120px] lg:text-[125px] leading-none mb-6 uppercase select-none drop-shadow-sm mt-[-10px] sm:mt-[-25px]"
-            style={{ fontFamily: 'var(--font-montserrat), sans-serif', fontWeight: 900, letterSpacing: '-3.4px' }}
+            className="text-white text-[30px] sm:text-[48px] md:text-[75px] lg:text-[100px] xl:text-[125px] leading-none mb-3 sm:mb-5 md:mb-6 uppercase select-none drop-shadow-sm mt-[-3px] sm:mt-[-8px] md:mt-[-15px]"
+            style={{ fontFamily: 'var(--font-montserrat), sans-serif', fontWeight: 900, letterSpacing: '-2px' }}
           >
             TEMPORADA
           </h1>
@@ -288,7 +291,7 @@ export default function Home() {
             href="https://wa.me/50325119609"
             target="_blank"
             rel="noopener noreferrer"
-            className="border border-white bg-black/15 backdrop-blur-[2px] text-white w-[228px] h-[54px] flex items-center justify-center tracking-[2.8px] font-semibold text-[14px] uppercase hover:bg-white hover:text-terracotta transition-all duration-300 active:scale-95 shadow-md"
+            className="border border-white bg-black/15 backdrop-blur-[2px] text-white w-[160px] sm:w-[190px] md:w-[210px] lg:w-[228px] h-[44px] sm:h-[50px] md:h-[54px] flex items-center justify-center tracking-[1.5px] sm:tracking-[2px] md:tracking-[2.8px] font-semibold text-[11px] sm:text-[12px] md:text-[14px] uppercase hover:bg-white hover:text-terracotta transition-all duration-300 active:scale-95 shadow-md"
           >
             COTIZA TU EVENTO
           </a>
@@ -327,18 +330,6 @@ export default function Home() {
           ))}
         </div>
 
-        {/* WHATSAPP FLOAT BUTTON INSIDE HERO - Matches Figma layout exactly */}
-        <a
-          href="https://wa.me/50325119609"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="absolute bottom-16 right-8 md:right-16 z-30 w-16 h-16 md:w-[93px] md:h-[93px] bg-[#af6852] hover:bg-[#8f4027] text-white rounded-full flex items-center justify-center shadow-lg transition-transform duration-300 hover:scale-110 active:scale-95 cursor-pointer"
-          title="Chatea con nosotros"
-        >
-          <svg className="w-8 h-8 md:w-11 md:h-11 fill-current" viewBox="0 0 24 24">
-            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.73-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.625 1.451 5.432.002 9.851-4.388 9.854-9.779.002-2.611-1.013-5.066-2.86-6.92C16.418 2.05 13.97 1.037 11.999 1.037c-5.437 0-9.856 4.39-9.859 9.782-.001 1.57.418 3.102 1.214 4.467l-.955 3.486 3.648-.956zm11.752-6.52c-.29-.146-1.715-.847-1.98-.942-.266-.097-.459-.146-.653.146-.193.29-.748.942-.917 1.137-.169.194-.338.22-.628.075-.29-.146-1.223-.45-2.33-1.439-.86-.767-1.44-1.716-1.609-2.008-.169-.29-.018-.447.127-.591.13-.13.29-.338.435-.507.145-.169.193-.29.29-.483.097-.193.048-.361-.024-.507-.072-.146-.653-1.57-.894-2.152-.234-.565-.472-.488-.652-.497-.169-.008-.362-.008-.555-.008-.193 0-.507.073-.772.362-.266.29-1.015.992-1.015 2.416s1.039 2.796 1.184 2.99c.145.195 2.044 3.12 4.95 4.376.691.3 1.23.479 1.65.612.695.22 1.328.19 1.828.115.556-.083 1.715-.7 1.956-1.376.24-.677.24-1.256.169-1.376-.073-.12-.266-.194-.556-.34z" />
-          </svg>
-        </a>
       </section>
 
       {/* ABOUT US SECTION ("DESDE 2013") */}
@@ -356,12 +347,12 @@ export default function Home() {
         <div className="absolute inset-0 w-full h-full bg-[rgba(155,62,38,0.64)]" />
 
         {/* Polaroid Left - Extends outside screen */}
-        <div className="hidden lg:block absolute left-[-100px] xl:left-[-60px] top-[50%] -translate-y-1/2 z-20">
-          <div className="relative w-[280px] lg:w-[340px] xl:w-[400px]">
+        <div className="hidden md:block absolute left-[-60px] lg:left-[-100px] xl:left-[-60px] top-[50%] -translate-y-1/2 z-20">
+          <div className="relative w-[160px] md:w-[200px] lg:w-[300px] xl:w-[380px]">
             {/* Shadow layer - slightly more rotated */}
-            <div className="absolute top-[0px] left-[10px] bg-[#672b17] w-full h-[340px] lg:h-[300px] xl:h-[390px] transform rotate-[-5deg] " />
-            <div className="relative bg-white p-[6px]  shadow-[0px_2px_12px_rgba(0,0,0,0.25)] transform rotate-[-15deg]">
-              <div className="relative w-full h-[300px] lg:h-[360px] xl:h-[400px] overflow-hidden">
+            <div className="absolute top-[0px] left-[8px] bg-[#672b17] w-full h-[200px] md:h-[240px] lg:h-[320px] xl:h-[400px] transform rotate-[-5deg]" />
+            <div className="relative bg-white p-[4px] md:p-[5px] lg:p-[6px] shadow-[0px_2px_12px_rgba(0,0,0,0.25)] transform rotate-[-15deg]">
+              <div className="relative w-full h-[180px] md:h-[220px] lg:h-[300px] xl:h-[380px] overflow-hidden">
                 <Image src={assets.polaroidLeft} alt="Nuestros panaderos artesanales" fill className="object-cover" />
               </div>
             </div>
@@ -369,56 +360,56 @@ export default function Home() {
         </div>
 
         {/* Polaroid Right - Extends outside screen */}
-        <div className="hidden lg:block absolute right-[-100px] xl:right-[-60px] top-[40%] -translate-y-1/2 z-20">
-          <div className="relative w-[280px] lg:w-[340px] xl:w-[400px]">
+        <div className="hidden md:block absolute right-[-60px] lg:right-[-100px] xl:right-[-60px] top-[40%] -translate-y-1/2 z-20">
+          <div className="relative w-[160px] md:w-[200px] lg:w-[300px] xl:w-[380px]">
             {/* Shadow layer - slightly more rotated */}
-            <div className="absolute top-[-10px] right-[10px] bg-[#4156a9] w-full h-[340px] lg:h-[400px] xl:h-[400px] transform rotate-[12deg] " />
-            <div className="relative bg-white p-[6px]  shadow-[0px_2px_12px_rgba(0,0,0,0.25)] transform rotate-[9deg]">
-              <div className="relative w-full h-[300px] lg:h-[360px] xl:h-[400px] overflow-hidden">
+            <div className="absolute top-[-8px] right-[8px] bg-[#4156a9] w-full h-[200px] md:h-[240px] lg:h-[320px] xl:h-[400px] transform rotate-[12deg]" />
+            <div className="relative bg-white p-[4px] md:p-[5px] lg:p-[6px] shadow-[0px_2px_12px_rgba(0,0,0,0.25)] transform rotate-[9deg]">
+              <div className="relative w-full h-[180px] md:h-[220px] lg:h-[300px] xl:h-[380px] overflow-hidden">
                 <Image src={assets.polaroidRight} alt="Disfrutando en el bistro" fill className="object-cover" />
               </div>
             </div>
           </div>
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-32">
 
-          <div className="flex flex-col items-center text-center max-w-2xl mx-auto relative z-20 mt-10">
+          <div className="flex flex-col items-center text-center max-w-2xl mx-auto relative z-20 mt-6 sm:mt-10">
             {/* DESDE 2013 */}
-            <div className="flex items-center justify-center gap-[30px] mb-4 w-full">
-              <div className="h-[1px] bg-white w-[90px]" />
-              <span className="font-quicksand font-bold text-[20px] md:text-[23px] tracking-[4.6px] uppercase text-white">
+            <div className="flex items-center justify-center gap-4 sm:gap-[30px] mb-3 sm:mb-4 w-full">
+              <div className="h-[1px] bg-white w-[50px] sm:w-[90px]" />
+              <span className="font-quicksand font-bold text-[14px] sm:text-[18px] md:text-[23px] tracking-[3px] sm:tracking-[4.6px] uppercase text-white">
                 DESDE 2013
               </span>
-              <div className="h-[1px] bg-white w-[90px]" />
+              <div className="h-[1px] bg-white w-[50px] sm:w-[90px]" />
             </div>
 
-            <span className="font-quicksand font-bold text-[18px] md:text-[23px] tracking-[2.3px] uppercase text-white mb-2 block">
+            <span className="font-quicksand font-bold text-[13px] sm:text-[16px] md:text-[23px] tracking-[1.5px] sm:tracking-[2.3px] uppercase text-white mb-2 block px-4">
               que cada bocado que disfrutes te lleves
             </span>
 
-            <h2 className="flex flex-col items-center mb-6 leading-none">
+            <h2 className="flex flex-col items-center mb-4 sm:mb-6 leading-none">
               <span 
-                className="text-[55px] md:text-[65px] uppercase text-white"
-                style={{ fontFamily: 'var(--font-montserrat), sans-serif', fontWeight: 900, letterSpacing: '-3.4px' }}
+                className="text-[32px] sm:text-[45px] md:text-[55px] lg:text-[65px] uppercase text-white"
+                style={{ fontFamily: 'var(--font-montserrat), sans-serif', fontWeight: 900, letterSpacing: '-2px' }}
               >
                 una experiencia
               </span>
               <span 
-                className="text-[55px] md:text-[90px] text-white tracking-[-1px] mt-1 select-none"
+                className="text-[36px] sm:text-[50px] md:text-[70px] lg:text-[90px] text-white tracking-[-1px] mt-1 select-none"
                 style={{ fontFamily: 'var(--font-script), cursive', fontWeight: 600 }}
               >
                 única de sabor
               </span>
             </h2>
 
-            <p className="font-montserrat font-normal text-[18px] md:text-[20px] leading-[1.3] mb-10 tracking-[-0.6px] text-white text-center max-w-[590px]">
+            <p className="font-montserrat font-normal text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] leading-[1.4] mb-8 sm:mb-10 tracking-[-0.4px] sm:tracking-[-0.6px] text-white text-center max-w-[590px] px-4">
               Con platillos basados en pan <strong className="font-bold">hecho en casa</strong>. Hemos creado un solo espacio donde <strong className="font-bold">hay de todo, para todas las vidas.</strong>
             </p>
 
             <a
               href="#menu"
-              className="backdrop-blur-[2px] bg-black/15 border-[0.5px] border-white w-[228px] h-[54px] flex items-center justify-center tracking-[3px] font-semibold text-[15px] uppercase text-white hover:bg-white hover:text-[#9c4c35] transition-all duration-300 active:scale-95 shadow-md"
+              className="backdrop-blur-[2px] bg-black/15 border-[0.5px] border-white w-[180px] sm:w-[200px] md:w-[228px] h-[48px] sm:h-[54px] flex items-center justify-center tracking-[2px] sm:tracking-[3px] font-semibold text-[13px] sm:text-[15px] uppercase text-white hover:bg-white hover:text-[#9c4c35] transition-all duration-300 active:scale-95 shadow-md"
             >
               ¡CONÓCENOS!
             </a>
@@ -427,93 +418,108 @@ export default function Home() {
       </section>
 
       {/* SELECCIONES MENU SECTION */}
-      <section id="menu" className="w-full py-20 lg:py-28 bg-white text-[#7a4737] relative">
+      <section id="menu" className="w-full py-12 sm:py-16 lg:py-28 bg-white text-[#7a4737] relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
 
-          <div className="flex flex-col items-center mb-12">
+          <div className="flex flex-col items-center mb-8 sm:mb-12">
             <span 
-              className="text-[45px] sm:text-[65px] text-[#7a4737] leading-none select-none"
+              className="text-[32px] sm:text-[45px] md:text-[65px] text-[#7a4737] leading-none select-none"
               style={{ fontFamily: 'var(--font-script), cursive', fontWeight: 600 }}
             >
               selecciones
             </span>
             <h2 
-              className="text-[65px] sm:text-[100px] md:text-[125px] text-[#8f4027] leading-none uppercase mt-2 select-none"
-              style={{ fontFamily: 'var(--font-montserrat), sans-serif', fontWeight: 900, letterSpacing: '-3.4px' }}
+              className="text-[40px] sm:text-[65px] md:text-[100px] lg:text-[125px] text-[#8f4027] leading-none uppercase mt-2 select-none"
+              style={{ fontFamily: 'var(--font-montserrat), sans-serif', fontWeight: 900, letterSpacing: '-2px' }}
             >
               VIDA MÍA
             </h2>
-            <p className="font-montserrat font-normal text-[16px] sm:text-[20px] text-[#7a4737] tracking-[-0.6px] mt-4 max-w-[420px] mx-auto">
+            <p className="font-montserrat font-normal text-[14px] sm:text-[16px] md:text-[20px] text-[#7a4737] tracking-[-0.6px] mt-4 max-w-[420px] mx-auto px-4">
               Nuestra oferta está diseñada para satisfacer todos los gustos y momentos del día
             </p>
           </div>
 
           {/* Category Tabs */}
-          <div className="w-full overflow-x-auto pb-8 scrollbar-hide flex justify-center">
-            <div className="flex items-center justify-center gap-10 min-w-max px-4">
-              <button className="bg-[#4156a9] text-white px-5 py-3 font-quicksand font-semibold text-[15px] tracking-[3px] uppercase shadow-md flex items-center h-[54px]">
+          <div className="w-full overflow-x-auto pb-6 sm:pb-8 scrollbar-hide flex justify-start sm:justify-center">
+            <div className="flex items-center gap-4 sm:gap-6 md:gap-10 min-w-max px-4">
+              <button 
+                onClick={() => setActiveTab("platos")}
+                className={`px-3 sm:px-5 py-2 sm:py-3 font-quicksand font-semibold text-[12px] sm:text-[15px] tracking-[2px] sm:tracking-[3px] uppercase flex items-center h-[44px] sm:h-[54px] transition-all whitespace-nowrap ${activeTab === "platos" ? "bg-[#4156a9] text-white shadow-md" : "text-black hover:text-[#4156a9]"}`}
+              >
                 PLATOS FUERTES
               </button>
-              <button className="text-black font-quicksand font-semibold text-[15px] tracking-[3px] uppercase hover:text-[#4156a9] transition-colors">
+              <button 
+                onClick={() => setActiveTab("postres")}
+                className={`px-3 sm:px-5 py-2 sm:py-3 font-quicksand font-semibold text-[12px] sm:text-[15px] tracking-[2px] sm:tracking-[3px] uppercase flex items-center h-[44px] sm:h-[54px] transition-all whitespace-nowrap ${activeTab === "postres" ? "bg-[#4156a9] text-white shadow-md" : "text-black hover:text-[#4156a9]"}`}
+              >
                 POSTRES
               </button>
-              <button className="text-black font-quicksand font-semibold text-[15px] tracking-[3px] uppercase hover:text-[#4156a9] transition-colors">
+              <button 
+                onClick={() => setActiveTab("pasteles")}
+                className={`px-3 sm:px-5 py-2 sm:py-3 font-quicksand font-semibold text-[12px] sm:text-[15px] tracking-[2px] sm:tracking-[3px] uppercase flex items-center h-[44px] sm:h-[54px] transition-all whitespace-nowrap ${activeTab === "pasteles" ? "bg-[#4156a9] text-white shadow-md" : "text-black hover:text-[#4156a9]"}`}
+              >
                 PASTELES
               </button>
-              <button className="text-black font-quicksand font-semibold text-[15px] tracking-[3px] uppercase hover:text-[#4156a9] transition-colors">
+              <button 
+                onClick={() => setActiveTab("bebidas")}
+                className={`px-3 sm:px-5 py-2 sm:py-3 font-quicksand font-semibold text-[12px] sm:text-[15px] tracking-[2px] sm:tracking-[3px] uppercase flex items-center h-[44px] sm:h-[54px] transition-all whitespace-nowrap ${activeTab === "bebidas" ? "bg-[#4156a9] text-white shadow-md" : "text-black hover:text-[#4156a9]"}`}
+              >
                 BEBIDAS
               </button>
-              <button className="text-black font-quicksand font-semibold text-[15px] tracking-[3px] uppercase hover:text-[#4156a9] transition-colors">
+              <button 
+                onClick={() => setActiveTab("infantil")}
+                className={`px-3 sm:px-5 py-2 sm:py-3 font-quicksand font-semibold text-[12px] sm:text-[15px] tracking-[2px] sm:tracking-[3px] uppercase flex items-center h-[44px] sm:h-[54px] transition-all whitespace-nowrap ${activeTab === "infantil" ? "bg-[#4156a9] text-white shadow-md" : "text-black hover:text-[#4156a9]"}`}
+              >
                 MENÚ INFANTIL
               </button>
             </div>
           </div>
 
           {/* Food Grid - Matching the Figma EXACTLY */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-8 text-left max-w-[1240px] mx-auto">
-            {MENU_DATA["platos"]?.map((item) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 mt-6 sm:mt-8 text-left max-w-[1240px] mx-auto">
+            {MENU_DATA[activeTab]?.map((item) => (
               <div
                 key={item.id}
-                className="bg-[#fff8f3] shadow-[0px_4px_24px_rgba(0,0,0,0.15)] flex flex-col sm:flex-row h-auto sm:h-[244px] group w-full max-w-[606px] mx-auto"
+                className="bg-[#fff8f3] shadow-[0px_4px_24px_rgba(0,0,0,0.15)] flex flex-col sm:flex-row h-auto sm:h-[220px] lg:h-[244px] group w-full max-w-[606px] mx-auto"
               >
                 {/* Left Image - Full rectangle, no arch */}
-                <div className="relative w-full sm:w-[299px] h-[200px] sm:h-full shrink-0 overflow-hidden">
+                <div className="relative w-full sm:w-[45%] lg:w-[299px] h-[180px] sm:h-full shrink-0 overflow-hidden">
                   <Image
                     src={item.image}
                     alt={item.name}
                     fill
                     className="object-cover object-center"
                   />
-                  <div className="absolute inset-x-0 bottom-0 h-[153px] bg-gradient-to-t from-black/40 to-transparent pointer-events-none hidden sm:block" />
+                  <div className="absolute inset-x-0 bottom-0 h-[100px] sm:h-[153px] bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
                 </div>
 
                 {/* Right Content */}
-                <div className="p-5 sm:p-6 flex flex-col relative w-full pt-10 sm:pt-6">
+                <div className="p-4 sm:p-5 lg:p-6 flex flex-col relative w-full pt-8 sm:pt-5 lg:pt-6">
                   {/* Price Tag positioned absolute in the design! */}
-                  <div className="absolute top-6 left-6 bg-[#4156a9] text-white font-montserrat font-bold text-[15px] tracking-tight px-2 py-1 rounded-[4px] h-[25px] flex items-center justify-center">
+                  <div className="absolute top-4 left-4 sm:top-5 sm:left-5 lg:top-6 lg:left-6 bg-[#4156a9] text-white font-montserrat font-bold text-[13px] sm:text-[15px] tracking-tight px-2 py-1 rounded-[4px] h-[23px] sm:h-[25px] flex items-center justify-center">
                     {item.price}
                   </div>
 
-                  <div className="mt-10 sm:mt-8">
-                    <h3 className="font-montserrat font-bold text-[18px] sm:text-[20px] text-[#af6852] leading-tight uppercase mb-1">
+                  <div className="mt-6 sm:mt-6 lg:mt-8">
+                    <h3 className="font-montserrat font-bold text-[16px] sm:text-[18px] lg:text-[20px] text-[#af6852] leading-tight uppercase mb-1">
                       {item.name}
                     </h3>
-                    <p className="font-montserrat font-light text-[13px] sm:text-[14px] text-[#7a4737] leading-[16px] tracking-[-0.4px]">
+                    <p className="font-montserrat font-light text-[12px] sm:text-[13px] lg:text-[14px] text-[#7a4737] leading-[15px] sm:leading-[16px] tracking-[-0.4px] line-clamp-3">
                       {item.description}
                     </p>
                   </div>
 
-                  <div className="mt-auto pt-4 flex flex-col gap-2">
+                  <div className="mt-auto pt-3 sm:pt-4 flex flex-col gap-2">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-1">
-                        <span className="font-montserrat font-bold text-[13px] sm:text-[14px] text-[#af6852]">5 estrellas</span>
+                        <span className="font-montserrat font-bold text-[12px] sm:text-[13px] lg:text-[14px] text-[#af6852]">5 estrellas</span>
                       </div>
-                      <a href="#ubicaciones" className="font-montserrat font-normal text-[13px] sm:text-[14px] text-[#7a4737] underline tracking-[-0.4px] hover:text-[#4156a9]">
+                      <a href="#ubicaciones" className="font-montserrat font-normal text-[12px] sm:text-[13px] lg:text-[14px] text-[#7a4737] underline tracking-[-0.4px] hover:text-[#4156a9]">
                         Ver Ubicaciones
                       </a>
                     </div>
                     {/* Stars visual */}
-                    <div className="relative w-[119px] h-[23px]">
+                    <div className="relative w-[100px] sm:w-[119px] h-[20px] sm:h-[23px]">
                       <Image src={assets.stars} alt="5 Stars" fill className="object-contain object-left" />
                     </div>
                   </div>
@@ -533,28 +539,28 @@ export default function Home() {
       </section>
 
       {/* COZY SHOP & LOCATION INFO ("PAUSA PERFECTA") */}
-      <section id="ubicaciones" className="w-full bg-white relative overflow-hidden flex flex-col lg:flex-row items-stretch min-h-[850px] z-0">
+      <section id="ubicaciones" className="w-full bg-white relative overflow-hidden flex flex-col lg:flex-row items-stretch min-h-[500px] lg:min-h-[750px] xl:min-h-[850px] z-0">
         {/* Left Side: Large vertical photo of cozy bistro interior */}
-        <div className="relative w-full lg:w-[687px] h-[500px] lg:h-auto shrink-0 flex items-end">
+        <div className="relative w-full lg:w-1/2 h-[300px] sm:h-[400px] lg:h-auto lg:min-h-[750px] xl:min-h-[850px] flex items-end">
           <Image
             src={assets.shopInteriorLarge}
             alt="Interior acogedor Vida Mía Bistro"
             fill
             className="object-cover object-center"
           />
-          <div className="absolute inset-x-0 bottom-0 h-[378px] bg-gradient-to-t from-black/95 to-transparent pointer-events-none" />
+          <div className="absolute inset-x-0 bottom-0 h-[180px] sm:h-[250px] lg:h-[350px] bg-gradient-to-t from-black/95 to-transparent pointer-events-none" />
 
           {/* Text over image */}
-          <div className="relative z-10 text-white w-full text-center pb-20">
+          <div className="relative z-10 text-white w-full text-center pb-8 sm:pb-12 lg:pb-16 xl:pb-20">
             <span 
-              className="text-[30px] leading-none block mb-1"
+              className="text-[20px] sm:text-[24px] md:text-[28px] lg:text-[30px] leading-none block mb-1"
               style={{ fontFamily: 'var(--font-script), cursive', fontWeight: 600 }}
             >
               Pausa. Respira
             </span>
             <h3 
-              className="text-[65px] md:text-[85px] uppercase leading-none block"
-              style={{ fontFamily: 'var(--font-montserrat), sans-serif', fontWeight: 900, letterSpacing: '-3.4px' }}
+              className="text-[36px] sm:text-[48px] md:text-[60px] lg:text-[75px] xl:text-[85px] uppercase leading-none block"
+              style={{ fontFamily: 'var(--font-montserrat), sans-serif', fontWeight: 900, letterSpacing: '-2px' }}
             >
               DISFRUTA
             </h3>
@@ -562,74 +568,103 @@ export default function Home() {
         </div>
 
         {/* Right Side: Map and Contact details */}
-        <div className="flex-grow p-6 sm:p-12 lg:p-20 flex flex-col justify-center items-center text-center bg-white relative z-10">
-          <div className="mb-8">
+        <div className="w-full lg:w-1/2 p-5 sm:p-8 lg:p-10 xl:p-16 flex flex-col justify-center items-center text-center bg-white relative z-10">
+          <div className="mb-6 sm:mb-8">
             <span 
-              className="text-[45px] sm:text-[55px] text-[#8f4027] leading-none block mb-2"
+              className="text-[30px] sm:text-[40px] md:text-[55px] text-[#8f4027] leading-none block mb-2"
               style={{ fontFamily: 'var(--font-script), cursive', fontWeight: 600 }}
             >
               Ten la pausa
             </span>
             <h2 
-              className="text-[65px] sm:text-[95px] text-[#8f4027] leading-none uppercase block"
-              style={{ fontFamily: 'var(--font-montserrat), sans-serif', fontWeight: 900, letterSpacing: '-3.4px' }}
+              className="text-[40px] sm:text-[60px] md:text-[80px] lg:text-[95px] text-[#8f4027] leading-none uppercase block"
+              style={{ fontFamily: 'var(--font-montserrat), sans-serif', fontWeight: 900, letterSpacing: '-2px' }}
             >
               PERFECTA
             </h2>
-            <p className="font-montserrat font-normal text-[16px] sm:text-[18px] text-[#7a4737] tracking-[-0.5px] mt-6 max-w-[470px] mx-auto">
+            <p className="font-montserrat font-normal text-[14px] sm:text-[16px] md:text-[18px] text-[#7a4737] tracking-[-0.5px] mt-4 sm:mt-6 max-w-[470px] mx-auto px-4">
               Nuestro equipo está listo para responder tus consultas y ayudarte a encontrar tu bebida o experiencia favorita.
             </p>
           </div>
 
           {/* Custom line separator */}
-          <div className="w-full max-w-[500px] h-px bg-[#7a4737]/20 my-8" />
+          <div className="w-full max-w-[400px] sm:max-w-[500px] h-px bg-[#7a4737]/20 my-6 sm:my-8" />
 
           {/* Map layout container */}
-          <div className="relative w-full max-w-[578px] h-[260px] rounded-[10px] overflow-hidden bg-zinc-100 mb-10 shadow-sm">
+          <div className="relative w-full max-w-[320px] sm:max-w-[450px] md:max-w-[578px] h-[180px] sm:h-[220px] md:h-[260px] rounded-[10px] overflow-hidden bg-zinc-100 mb-6 sm:mb-10 shadow-sm">
             <Image
               src={assets.mapBg}
               alt="Ubicación Mapa Vida Mía Chalatenango"
               fill
               className="object-cover object-center"
             />
-            {/* Markers can be placed here with absolute positioning if needed */}
-            <div className="absolute top-[45%] right-[20%] font-montserrat font-normal text-[#8f4027] text-[18px] tracking-[-0.5px]">
-              Vida Mía Bistro Café
+            {/* Map pins positioned like Figma */}
+            {/* Large center pin with label */}
+            <div className="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+              <div className="w-[49px] h-[49px] relative">
+                <Image src={assets.mapPinLarge} alt="" fill className="object-contain" />
+              </div>
+              <span className="font-montserrat font-normal text-[#8f4027] text-[16px] sm:text-[18px] tracking-[-0.54px] mt-1 whitespace-nowrap">
+                Vida Mía Bistro Café
+              </span>
             </div>
-            {/* Animated Pin (Example) */}
-            <div className="absolute top-[40%] left-[30%] w-6 h-6">
-              <div className="absolute w-full h-full rounded-full bg-brand-blue opacity-40 animate-ping" />
-              <div className="w-3.5 h-3.5 rounded-full bg-brand-blue border-2 border-white shadow-md mx-auto mt-1" />
+            {/* Top left pin */}
+            <div className="absolute top-[15%] left-[4%] w-[34px] h-[34px]">
+              <Image src={assets.mapPinMedium} alt="" fill className="object-contain" />
+            </div>
+            {/* Top right small pin */}
+            <div className="absolute top-[8%] right-[35%] w-[26px] h-[26px]">
+              <Image src={assets.mapPinSmall} alt="" fill className="object-contain" />
+            </div>
+            {/* Right side pin */}
+            <div className="absolute top-[30%] right-[8%] w-[34px] h-[34px]">
+              <Image src={assets.mapPinMedium} alt="" fill className="object-contain" />
+            </div>
+            {/* Bottom left pin */}
+            <div className="absolute bottom-[15%] left-[8%] w-[34px] h-[34px]">
+              <Image src={assets.mapPinMedium} alt="" fill className="object-contain" />
+            </div>
+            {/* Bottom left small pin */}
+            <div className="absolute bottom-[8%] left-[16%] w-[26px] h-[26px]">
+              <Image src={assets.mapPinSmall} alt="" fill className="object-contain" />
+            </div>
+            {/* Bottom right pin */}
+            <div className="absolute bottom-[10%] right-[12%] w-[34px] h-[34px]">
+              <Image src={assets.mapPinMedium} alt="" fill className="object-contain" />
+            </div>
+            {/* Top center small pin */}
+            <div className="absolute top-[10%] right-[22%] w-[17px] h-[17px]">
+              <Image src={assets.mapPinSmall} alt="" fill className="object-contain" />
             </div>
           </div>
 
           {/* Address and telephone details */}
-          <div className="flex flex-col lg:flex-row gap-10 items-center justify-center w-full max-w-[700px] text-left">
-            <div className="flex flex-col gap-4 items-start">
+          <div className="flex flex-col sm:flex-row lg:flex-row gap-6 sm:gap-8 lg:gap-10 items-center justify-center w-full max-w-[700px] text-left px-4">
+            <div className="flex flex-col gap-4 items-center sm:items-start">
               <div className="flex items-start gap-3">
-                <div className="w-5 h-5 relative shrink-0 mt-1">
+                <div className="w-4 sm:w-5 h-4 sm:h-5 relative shrink-0 mt-1">
                   <Image src={assets.locationVector} alt="Location" fill className="object-contain" />
                 </div>
                 <div>
-                  <h4 className="font-montserrat font-medium text-[18px] text-[#7a4737] tracking-[-0.9px] leading-none mb-1">
+                  <h4 className="font-montserrat font-medium text-[14px] sm:text-[16px] md:text-[18px] text-[#7a4737] tracking-[-0.9px] leading-none mb-1">
                     Vida Mía | <strong className="font-bold">Chalatenango</strong>
                   </h4>
-                  <p className="font-montserrat font-normal text-[16px] leading-[21px] text-[#7a4737] tracking-[-0.48px] max-w-[290px]">
+                  <p className="font-montserrat font-normal text-[13px] sm:text-[14px] md:text-[16px] leading-[18px] sm:leading-[21px] text-[#7a4737] tracking-[-0.48px] max-w-[250px] sm:max-w-[290px]">
                     6ta Calle Poniente, Barrio El Chile #A5-35, Chalatenango, Chalatenango
                   </p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <div className="w-5 h-5 relative shrink-0">
+                <div className="w-4 sm:w-5 h-4 sm:h-5 relative shrink-0">
                   <Image src={assets.phoneIcon} alt="Phone" fill className="object-contain" />
                 </div>
                 <div>
-                  <h4 className="font-montserrat font-medium text-[18px] text-[#7a4737] tracking-[-0.9px] leading-none mb-1">
+                  <h4 className="font-montserrat font-medium text-[14px] sm:text-[16px] md:text-[18px] text-[#7a4737] tracking-[-0.9px] leading-none mb-1">
                     Teléfono
                   </h4>
                   <a
                     href="tel:+50323012829"
-                    className="font-montserrat font-normal text-[18px] text-[#7a4737] underline tracking-[3px] hover:text-[#4156a9]"
+                    className="font-montserrat font-normal text-[14px] sm:text-[16px] md:text-[18px] text-[#7a4737] underline tracking-[2px] sm:tracking-[3px] hover:text-[#4156a9]"
                   >
                     2301-2829
                   </a>
@@ -637,8 +672,8 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="flex-shrink-0">
-              <button className="bg-[#4156a9] text-white px-6 py-4 font-quicksand font-semibold text-[15px] tracking-[3px] uppercase shadow-md flex items-center justify-center hover:bg-brand-blue/90 transition-colors w-[228px]">
+            <div className="flex-shrink-0 mt-4 sm:mt-0">
+              <button className="bg-[#4156a9] text-white px-4 sm:px-6 py-3 sm:py-4 font-quicksand font-semibold text-[13px] sm:text-[15px] tracking-[2px] sm:tracking-[3px] uppercase shadow-md flex items-center justify-center hover:bg-brand-blue/90 transition-colors w-[180px] sm:w-[200px] md:w-[228px]">
                 IR A UBICACIONES
               </button>
             </div>
@@ -647,29 +682,29 @@ export default function Home() {
       </section>
 
       {/* BRAND FOOTER — Figma node 1:190 */}
-      <footer className="relative z-10 mt-16 w-full">
+      <footer className="relative z-10 mt-10 sm:mt-16 w-full">
         {/* Curved arch shape using clip-path ellipse like Figma */}
         <div 
           className="relative w-full bg-[#8f4027] text-white"
           style={{
-            clipPath: 'ellipse(75% 100% at 50% 100%)',
-            paddingTop: '100px',
+            clipPath: 'ellipse(85% 100% at 50% 100%)',
+            paddingTop: '60px',
           }}
         >
           {/* Warm center glow */}
           <div 
             className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2"
             style={{
-              width: '800px',
-              height: '200px',
+              width: '600px',
+              height: '150px',
               background: 'radial-gradient(ellipse at center, #c35f3e 0%, transparent 70%)',
-              filter: 'blur(60px)',
+              filter: 'blur(50px)',
             }}
           />
 
-          <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-center px-4 text-center pb-16">
+          <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-center px-4 text-center pb-10 sm:pb-16">
             {/* Color logo with heart */}
-            <div className="relative mb-4 h-[50px] w-[220px] sm:h-[60px] sm:w-[260px]">
+            <div className="relative mb-3 sm:mb-4 h-[40px] w-[180px] sm:h-[50px] sm:w-[220px] md:h-[60px] md:w-[260px]">
               <Image
                 src="/assets/vida-mia-logo-footer.svg"
                 alt="Vida Mía Logo"
@@ -680,7 +715,7 @@ export default function Home() {
 
             {/* Tagline - script font to match Figma */}
             <span 
-              className="text-[26px] leading-none tracking-normal text-white sm:text-[32px]"
+              className="text-[20px] sm:text-[26px] md:text-[32px] leading-none tracking-normal text-white"
               style={{ fontFamily: 'var(--font-script), cursive', fontWeight: 600 }}
             >
               Más que café una
@@ -688,14 +723,14 @@ export default function Home() {
             
             {/* Main heading */}
             <h3 
-              className="mt-1 text-[42px] uppercase leading-none text-white sm:text-[60px] lg:text-[72px]"
-              style={{ fontFamily: 'var(--font-montserrat), sans-serif', fontWeight: 900, letterSpacing: '-3.4px' }}
+              className="mt-1 text-[32px] sm:text-[42px] md:text-[60px] lg:text-[72px] uppercase leading-none text-white"
+              style={{ fontFamily: 'var(--font-montserrat), sans-serif', fontWeight: 900, letterSpacing: '-2px' }}
             >
               experiencia
             </h3>
 
             {/* Contact info */}
-            <div className="mt-8 flex flex-col items-center justify-center gap-8 sm:mt-10 sm:flex-row sm:items-start sm:gap-[70px]">
+            <div className="mt-6 sm:mt-8 md:mt-10 flex flex-col items-center justify-center gap-6 sm:gap-8 sm:flex-row sm:items-start md:gap-[70px]">
               {/* Phone */}
               <div className="relative text-left">
                 <div className="absolute left-0 top-[1px] h-5 w-5">
@@ -743,6 +778,19 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* Floating WhatsApp Button - Always visible */}
+      <a
+        href="https://wa.me/50325119609"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-[56px] h-[56px] sm:w-[70px] sm:h-[70px] md:w-[80px] md:h-[80px] lg:w-[93px] lg:h-[93px] bg-[#d4a58c] hover:bg-[#c4917a] rounded-full flex items-center justify-center shadow-[0px_4px_15px_rgba(0,0,0,0.2)] transition-all duration-300 hover:scale-110 active:scale-95"
+        title="Chatea con nosotros"
+      >
+        <svg className="w-[26px] h-[26px] sm:w-[32px] sm:h-[32px] md:w-[36px] md:h-[36px] lg:w-[40px] lg:h-[40px]" viewBox="0 0 37 37" fill="none">
+          <path fillRule="evenodd" clipRule="evenodd" d="M18.3333 0C8.20783 0 0 8.20783 0 18.3333C0 21.7983 0.9625 25.0433 2.63633 27.808L1.001 33.3667C0.907105 33.6858 0.900927 34.0244 0.983115 34.3467C1.0653 34.6691 1.23282 34.9634 1.46806 35.1986C1.7033 35.4338 1.99757 35.6014 2.31993 35.6836C2.6423 35.7657 2.98085 35.7596 3.3 35.6657L8.85867 34.0303C11.7162 35.7593 14.9934 36.6712 18.3333 36.6667C28.4588 36.6667 36.6667 28.4588 36.6667 18.3333C36.6667 8.20783 28.4588 0 18.3333 0ZM14.1863 22.4822C17.8952 26.1892 21.4353 26.6787 22.6857 26.7245C24.5868 26.7942 26.4385 25.3422 27.159 23.6573C27.25 23.4477 27.283 23.2176 27.2546 22.9909C27.2262 22.7641 27.1375 22.5492 26.9977 22.3685C25.993 21.0852 24.6345 20.163 23.3072 19.2463C23.03 19.0547 22.6895 18.9778 22.3569 19.0319C22.0243 19.0859 21.7256 19.2665 21.5233 19.536L20.4233 21.2135C20.3655 21.3037 20.2754 21.3683 20.1714 21.3943C20.0675 21.4202 19.9576 21.4053 19.8642 21.3528C19.118 20.9257 18.0308 20.1997 17.2498 19.4187C16.4688 18.6377 15.7868 17.6 15.4037 16.9015C15.3562 16.8128 15.3424 16.7098 15.365 16.6117C15.3876 16.5136 15.445 16.427 15.5265 16.368L17.2205 15.1103C17.4623 14.9001 17.6183 14.6084 17.6588 14.2906C17.6994 13.9728 17.6217 13.6512 17.4405 13.387C16.6192 12.1843 15.6622 10.6553 14.2743 9.6415C14.0952 9.51171 13.8854 9.43078 13.6655 9.40667C13.4457 9.38256 13.2233 9.4161 13.0203 9.504C11.3337 10.2263 9.87433 12.078 9.944 13.9828C9.98983 15.2332 10.4793 18.7733 14.1863 22.4822Z" fill="white"/>
+        </svg>
+      </a>
     </div>
   );
 }
