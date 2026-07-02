@@ -19,15 +19,15 @@ const assets = {
   maskGroupFooter: "/assets/02a47ad42082a01bb1ffb26a671fcf75bafb1a1a.svg",
 
   // Background/Polaroid photos
-  polaroidLeft: "/assets/about-photo-left.jpg",
-  polaroidRight: "/assets/about-photo-right.jpg",
+  polaroidLeft: "/assets/bowl-pechuga-de-pollo.jpg",
+  polaroidRight: "/assets/comida.png",
   aboutBg: "/assets/c6c465196aa08b0ee2ddcb061f4dc734f5e3094d.png",
 
   // Food items
-  entrana: "/assets/0ac6c1f51e47b859b4df61982fc2b736692ce04f.png",
-  burger: "/assets/e92bbd701d0ab155eedec8f5a5b5917e9bfe0461.png",
-  pasta: "/assets/d1d4443d8ba08a54ff48294bb665cb114196ba90.png",
-  salad: "/assets/a98b5c0f118290eb6cc834b765617f54f11a07b5.png",
+  entrana: "/assets/clasico-mejorado.jpg",
+  burger: "/assets/clasico-mejorado.jpg",
+  pasta: "/assets/desayuno-salvador.jpg",
+  salad: "/assets/mediterraneo.jpg",
 
   // Bistro shop / locations
   shopInterior: "/assets/c773a7e1ee50cf5640487f8feb442399b7ca59ee.png",
@@ -58,159 +58,161 @@ const MENU_DATA: Record<string, FoodItem[]> = {
   platos: [
     {
       id: 1,
-      name: "ENTRAÑA 8OZ",
-      price: "$19.50",
-      description: "Corte premium de entraña a la parrilla con mantequilla de hierbas montado en una cama de papas francesas.",
+      name: "DESAYUNO CLÁSICO (Mejorado)",
+      price: "$6.50",
+      description: "Huevos al gusto,acompañado de frijoles, salsa ranchera, plátanos fritos y carne asada",
       image: assets.entrana,
     },
     {
       id: 2,
-      name: "PASTA GRATINADA DE POLLO",
-      price: "$12.50",
-      description: "Pasta Penne con salsa florentina, espinaca gratinada con queso.",
+      name: "DESAYUNO SALVADOREÑO",
+      price: "$9.50",
+      description: "2 Pupusas de maíz: (queso o frijol con queso) frijoles refritos, huevos al gusto; solos o con vegetales y plátanos fritos.",
       image: assets.pasta,
     },
     {
       id: 3,
-      name: "SKILLET CHEDDAR BURGUER",
-      price: "$10.95",
-      description: "Con carne de res, lechuga, aros de cebolla bañado en salsa de queso cheddar derretido.",
+      name: "DESAYUNO COLOMBIANO",
+      price: "$9.50",
+      description: "Lomito de res acompañado de huevos estrellados, frijoles, plátanos fritos y salsa ranchera. Incluye: 1 pan de agua.",
       image: assets.burger,
     },
     {
       id: 4,
-      name: "ENSALADA DE LA CASA",
-      price: "$9.95",
-      description: "Base de lechuga fresca, queso, mantequilla, tomate y pepino acompañado con pechuga a la plancha y pesto.",
+      name: "OMELETTE MEDITERRÁNEO",
+      price: "$8.75",
+      description: "Omelette con costra de queso mozzarella, espinaca fresca, hongos, cebolla caramelizada y queso mantequilla.",
       image: assets.salad,
     },
   ],
   postres: [
     {
       id: 5,
-      name: "TRES LECHES DE LA CASA",
-      price: "$4.50",
-      description: "Esponjoso pan bañado en nuestra mezcla secreta de tres leches, decorado con merengue y un toque de canela.",
-      image: assets.entrana,
+      name: "ENSALADA VIDA VERDE",
+      price: "$9.95",
+      description: "Mix de lechugas con aguacate, queso mantequilla, semillas caramelizadas, albahaca y pechuga de pollo a la parrilla.",
+      image: "/assets/ensalda-vida-verde.jpg",
     },
     {
       id: 6,
-      name: "VOLCÁN DE CHOCOLATE",
-      price: "$5.95",
-      description: "Bizcocho de chocolate relleno de fudge caliente de chocolate belga, acompañado de una bola de helado de vainilla.",
-      image: assets.pasta,
+      name: "BOWL PECHUGA DE POLLO",
+      price: "$10.95",
+      description: "Base de arroz y lechuga, con chunks de pollo empanizado, aguacate, maíz dulce, chips tostadas, cebolla curtida, chirimol.",
+      image: "/assets/bowl-pechuga-de-pollo.jpg",
     },
     {
       id: 7,
-      name: "CHEESECAKE DE FRESA",
-      price: "$5.25",
-      description: "Suave y cremosa tarta de queso con base crujiente de galleta y coulis artesanal de fresas frescas.",
-      image: assets.burger,
+      name: "COBB SALAD",
+      price: "$9.95",
+      description: "Mix de lechugas, pollo a la barbacoa, queso cheddar, huevo duro, tocino y aguacate.",
+      image: "/assets/cobb-salad.jpg",
     },
     {
       id: 8,
-      name: "FLAN DE COCO CASERO",
-      price: "$4.00",
-      description: "Flan casero horneado lentamente con caramelo tostado y lluvia de coco deshidratado y tostado.",
-      image: assets.salad,
+      name: "BOWL DE CAMARÓN",
+      price: "$10.95",
+      description: "Base de arroz y lechuga con camarones salteados, piña asada, maíz dulce, pepino y aceitunas negras.",
+      image: "/assets/bown-de-camaron.jpg",
     },
   ],
   pasteles: [
     {
       id: 9,
-      name: "PASTEL VIDA MÍA (ENTERO)",
-      price: "$28.00",
-      description: "Pastel insignia de chocolate oscuro relleno de ganache de avellana y decorado con frutos rojos de temporada.",
-      image: assets.entrana,
+      name: "LA TÓXICA",
+      price: "$11.75",
+      description: "Hamburguesa con doble carne de res, queso cheddar, queso frito, tocino, cebolla caramelizada aderezo chipotle y chile toreado.",
+      image: "/assets/DSC07521.jpg",
     },
     {
       id: 10,
-      name: "RED VELVET CLASSIQUE",
-      price: "$25.00",
-      description: "Capas de bizcocho aterciopelado rojo relleno y cubierto con frosting suave de queso crema premium.",
-      image: assets.pasta,
+      name: "VM BURGER",
+      price: "$10.00",
+      description: "Pan de hamburguesa, carne de res, aderezo de la casa, queso cheddar, tocino y aros de cebolla en tempura.",
+      image: "/assets/DSC07521.jpg",
     },
     {
       id: 11,
-      name: "PASTEL DE ZANAHORIA Y NUEZ",
-      price: "$24.50",
-      description: "Bizcocho húmedo de zanahoria rallada con nueces troceadas y especias dulces, cubierto con crema de vainilla.",
-      image: assets.burger,
+      name: "OCEAN BURGER",
+      price: "$11.50",
+      description: "Hamburguesa con carne de res, salsa Alfredo, queso mozzarella y camarones salteados.",
+      image: "/assets/DSC07521.jpg",
     },
     {
       id: 12,
-      name: "SELVA NEGRA DE CEREZAS",
-      price: "$26.00",
-      description: "Tradicional pastel de chocolate, crema batida, cerezas al marrasquino y virutas de chocolate premium.",
-      image: assets.salad,
+      name: "CRISPY BURGER",
+      price: "$10.95",
+      description: "Hamburguesa con carne de res, hongos salteados, queso mozzarella, cebolla crispy, tocino y aderezo barbacoa.",
+      image: "/assets/DSC07521.jpg",
     },
   ],
   bebidas: [
     {
       id: 13,
-      name: "CAPUCCINO MOCHA FRÍO",
-      price: "$3.75",
-      description: "Espresso premium con leche vaporizada fría, un toque de jarabe de chocolate belga y espuma densa.",
-      image: assets.entrana,
+      name: "PIZZA ALFREDO",
+      price: "$9.00",
+      description: "Pizza con salsa Alfredo, espinacas, pollo, hongos y tocino.",
+      image: "/assets/pizza-alfredo.jpg",
     },
     {
       id: 14,
-      name: "SMOOTHIE TROPICAL MIX",
-      price: "$4.25",
-      description: "Bebida refrescante granizada de mango, maracuyá y piña, licuado al momento con ingredientes frescos.",
-      image: assets.pasta,
+      name: "PIZZA CON CAMARONES",
+      price: "$9.50",
+      description: "Pizza bañada en salsa Alfredo, cubierta con queso mozzarella y camarones al ajillo.",
+      image: "/assets/pizza-de-camarones.jpg",
     },
     {
       id: 15,
-      name: "SODA ITALIANA DE FRUTOS ROJOS",
-      price: "$3.50",
-      description: "Soda artesanal gasificada con jarabe de fresas, moras y arándanos, servida helada con hojas de menta.",
-      image: assets.burger,
+      name: "PIZZA MARGARITA",
+      price: "$7.50",
+      description: "Pizza tradicional de salsa napolitana, queso mozzarella, tomate, pesto y albahaca.",
+      image: "/assets/pizza-margarita.jpg",
     },
     {
       id: 16,
-      name: "LATTE DE LAVANDA Y MIEL",
-      price: "$3.95",
-      description: "Café latte premium con infusión sutil de lavanda orgánica y endulzado con miel de abeja local.",
-      image: assets.salad,
+      name: "PIZZA CUATRO QUESOS",
+      price: "$7.50",
+      description: "Pizza crujiente en salsa napolitana y 4 tipos de quesos: mozzarella, queso crema, ricotta y cheddar.",
+      image: "/assets/pizza-4-quesos.jpg",
     },
   ],
   infantil: [
     {
       id: 17,
-      name: "MINI BURGUER CON PAPAS",
-      price: "$6.95",
-      description: "Mini hamburguesa de res con queso cheddar derretido, acompañada de papas fritas crujientes y ketchup.",
-      image: assets.entrana,
+      name: "FETUCCINI ALFREDO CON CAMARONES",
+      price: "$12.95",
+      description: "Pasta fetuccini con camarones salteados y salsa Alfredo. Incluye: 2 rebanadas de pan baguette.",
+      image: "/assets/fetuccini-alfredo-con-camarones.jpg",
     },
     {
       id: 18,
-      name: "CHICKEN NUGGETS CASEROS",
-      price: "$5.50",
-      description: "Trocitos de pechuga de pollo marinados y empanizados al momento, servidos con salsa de miel y mostaza.",
-      image: assets.pasta,
+      name: "PECHUGA AL PESTO",
+      price: "$10.95",
+      description: "Pechuga de pollo a la parrilla bañada en pesto de albahaca, acompañada de tocino, vegetales salteados y papas españolas.",
+      image: "/assets/pechuga-al-pesto.jpg",
     },
     {
       id: 19,
-      name: "MAC & CHEESE CREAMY",
-      price: "$5.95",
-      description: "Pasta corta bañada en una rica y cremosa salsa de queso cheddar y parmesano gratinada al horno.",
-      image: assets.burger,
+      name: "PARRILLADA PARA 2 PERSONAS",
+      price: "$35.00",
+      description: "8 Onzas de carne, 6 onzas de pollo, 1 orden de camarones, 6 cebollines, 2 ordenes de frijoles, 1 orden de papas españolas, 1 ordenes de guacamole, 2 ordenes de chirimol y 4 pan con ajo ó 4 tortillas de taco. Incluye: 4 rebanadas de pan baguette.",
+      image: "/assets/parrillada-para-2.jpg",
     },
     {
       id: 20,
-      name: "MINI WAFFLES DE FRUTA",
-      price: "$4.95",
-      description: "Dos mini waffles esponjosos acompañados de fresas frescas, rodajas de banano y miel de maple pura.",
-      image: assets.salad,
+      name: "TACOS DE CAMARÓN",
+      price: "$7.50",
+      description: "Tacos con camarones salteados bañados en salsa chipotle, acompañados de guacamole, chirimol y cebolla morada encurtida.",
+      image: "/assets/tacos-de-camaron.jpg",
     },
   ],
 };
 
 const HERO_IMAGES = [
-  assets.heroBg,
-  assets.heroBg,
-  assets.heroBg,
+  "/assets/banner-4.png",
+  "/assets/banner-2.png",
+  "/assets/banner-1.png",
+  "/assets/banner-3.png",
+  "/assets/banner-5.png",
 ];
 
 export default function Home() {
@@ -257,34 +259,35 @@ export default function Home() {
           </div>
         ))}
 
-        {/* Seamless Header/Top Soft Blend Gradient */}
-        <div className="absolute top-0 left-0 right-0 h-[300px] bg-gradient-to-b from-[#c9956d] via-[#c9956d]/80 to-transparent z-20 pointer-events-none" />
+        {/* Dark Top Gradient for Header Readability */}
+        <div className="absolute top-0 left-0 right-0 h-[250px] bg-gradient-to-b from-black/80 via-black/30 to-transparent z-20 pointer-events-none" />
 
         {/* Hero Content Overlay - Perfectly positioned based on Figma coordinates */}
         <div className="absolute inset-0 z-25 text-center flex flex-col items-center justify-center px-4 w-full">
           {/* Script accent row "una nueva" */}
+
           <div className="flex items-center justify-center gap-2 sm:gap-4 md:gap-6 mb-2 sm:mb-4 w-auto">
-            <span 
+            <span
               className="text-white text-[26px] sm:text-[45px] md:text-[65px] lg:text-[85px] xl:text-[95px] leading-none lowercase select-none whitespace-nowrap"
               style={{ fontFamily: 'var(--font-script), cursive', fontWeight: 600 }}
             >
-              una
+              Sabor
             </span>
             <div className="w-[40px] sm:w-[80px] md:w-[140px] lg:w-[220px] xl:w-[294px] h-[1px] bg-white opacity-80 flex-shrink-0" />
-            <span 
+            <span
               className="text-white text-[26px] sm:text-[45px] md:text-[65px] lg:text-[85px] xl:text-[95px] leading-none lowercase select-none whitespace-nowrap"
               style={{ fontFamily: 'var(--font-script), cursive', fontWeight: 600 }}
             >
-              nueva
+              Para
             </span>
           </div>
 
           {/* Large Title */}
-          <h1 
+          <h1
             className="text-white text-[30px] sm:text-[48px] md:text-[75px] lg:text-[100px] xl:text-[125px] leading-none mb-3 sm:mb-5 md:mb-6 uppercase select-none drop-shadow-sm mt-[-3px] sm:mt-[-8px] md:mt-[-15px]"
             style={{ fontFamily: 'var(--font-montserrat), sans-serif', fontWeight: 900, letterSpacing: '-2px' }}
           >
-            TEMPORADA
+            SIEMPRE
           </h1>
 
           {/* Call to action */}
@@ -337,10 +340,10 @@ export default function Home() {
       <section id="nosotros" className="relative w-full overflow-hidden text-white">
         {/* Background Image */}
         <div className="absolute inset-0 w-full h-full">
-          <Image 
-            src="/assets/about-bg.jpg" 
-            alt="" 
-            fill 
+          <Image
+            src="/assets/about-bg.jpg"
+            alt=""
+            fill
             className="object-cover object-center"
           />
         </div>
@@ -390,13 +393,13 @@ export default function Home() {
             </span>
 
             <h2 className="flex flex-col items-center mb-4 sm:mb-6 leading-none">
-              <span 
+              <span
                 className="text-[32px] sm:text-[45px] md:text-[55px] lg:text-[65px] uppercase text-white"
                 style={{ fontFamily: 'var(--font-montserrat), sans-serif', fontWeight: 900, letterSpacing: '-2px' }}
               >
                 una experiencia
               </span>
-              <span 
+              <span
                 className="text-[36px] sm:text-[50px] md:text-[70px] lg:text-[90px] text-white tracking-[-1px] mt-1 select-none"
                 style={{ fontFamily: 'var(--font-script), cursive', fontWeight: 600 }}
               >
@@ -423,13 +426,13 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
 
           <div className="flex flex-col items-center mb-8 sm:mb-12">
-            <span 
+            <span
               className="text-[32px] sm:text-[45px] md:text-[65px] text-[#7a4737] leading-none select-none"
               style={{ fontFamily: 'var(--font-script), cursive', fontWeight: 600 }}
             >
               selecciones
             </span>
-            <h2 
+            <h2
               className="text-[40px] sm:text-[65px] md:text-[100px] lg:text-[125px] text-[#8f4027] leading-none uppercase mt-2 select-none"
               style={{ fontFamily: 'var(--font-montserrat), sans-serif', fontWeight: 900, letterSpacing: '-2px' }}
             >
@@ -443,35 +446,35 @@ export default function Home() {
           {/* Category Tabs */}
           <div className="w-full overflow-x-auto pb-6 sm:pb-8 scrollbar-hide flex justify-start sm:justify-center">
             <div className="flex items-center gap-4 sm:gap-6 md:gap-10 min-w-max px-4">
-              <button 
+              <button
                 onClick={() => setActiveTab("platos")}
                 className={`px-3 sm:px-5 py-2 sm:py-3 font-quicksand font-semibold text-[12px] sm:text-[15px] tracking-[2px] sm:tracking-[3px] uppercase flex items-center h-[44px] sm:h-[54px] transition-all whitespace-nowrap ${activeTab === "platos" ? "bg-[#4156a9] text-white shadow-md" : "text-black hover:text-[#4156a9]"}`}
               >
-                PLATOS FUERTES
+                DESAYUNOS
               </button>
-              <button 
+              <button
                 onClick={() => setActiveTab("postres")}
                 className={`px-3 sm:px-5 py-2 sm:py-3 font-quicksand font-semibold text-[12px] sm:text-[15px] tracking-[2px] sm:tracking-[3px] uppercase flex items-center h-[44px] sm:h-[54px] transition-all whitespace-nowrap ${activeTab === "postres" ? "bg-[#4156a9] text-white shadow-md" : "text-black hover:text-[#4156a9]"}`}
               >
-                POSTRES
+                ENSALADAS
               </button>
-              <button 
+              <button
                 onClick={() => setActiveTab("pasteles")}
                 className={`px-3 sm:px-5 py-2 sm:py-3 font-quicksand font-semibold text-[12px] sm:text-[15px] tracking-[2px] sm:tracking-[3px] uppercase flex items-center h-[44px] sm:h-[54px] transition-all whitespace-nowrap ${activeTab === "pasteles" ? "bg-[#4156a9] text-white shadow-md" : "text-black hover:text-[#4156a9]"}`}
               >
-                PASTELES
+                BURGERS
               </button>
-              <button 
+              <button
                 onClick={() => setActiveTab("bebidas")}
                 className={`px-3 sm:px-5 py-2 sm:py-3 font-quicksand font-semibold text-[12px] sm:text-[15px] tracking-[2px] sm:tracking-[3px] uppercase flex items-center h-[44px] sm:h-[54px] transition-all whitespace-nowrap ${activeTab === "bebidas" ? "bg-[#4156a9] text-white shadow-md" : "text-black hover:text-[#4156a9]"}`}
               >
-                BEBIDAS
+                PIZZAS
               </button>
-              <button 
+              <button
                 onClick={() => setActiveTab("infantil")}
                 className={`px-3 sm:px-5 py-2 sm:py-3 font-quicksand font-semibold text-[12px] sm:text-[15px] tracking-[2px] sm:tracking-[3px] uppercase flex items-center h-[44px] sm:h-[54px] transition-all whitespace-nowrap ${activeTab === "infantil" ? "bg-[#4156a9] text-white shadow-md" : "text-black hover:text-[#4156a9]"}`}
               >
-                MENÚ INFANTIL
+                PLATOS FUERTES
               </button>
             </div>
           </div>
@@ -542,25 +545,33 @@ export default function Home() {
       {/* COZY SHOP & LOCATION INFO ("PAUSA PERFECTA") */}
       <section id="ubicaciones" className="w-full bg-white relative overflow-hidden flex flex-col lg:flex-row items-stretch min-h-[500px] lg:min-h-[750px] xl:min-h-[850px] z-0">
         {/* Left Side: Large vertical photo of cozy bistro interior */}
-        <div className="relative w-full lg:w-1/2 h-[300px] sm:h-[400px] lg:h-auto lg:min-h-[750px] xl:min-h-[850px] flex items-end">
+        <div className="relative w-full lg:w-1/2 h-[500px] sm:h-[600px] lg:h-auto lg:min-h-[750px] xl:min-h-[850px] flex items-end">
           <Image
-            src={assets.shopInteriorLarge}
+            src="/assets/shop-interior-waiter.png"
             alt="Interior acogedor Vida Mía Bistro"
             fill
             className="object-cover object-center"
           />
-          <div className="absolute inset-x-0 bottom-0 h-[180px] sm:h-[250px] lg:h-[350px] bg-gradient-to-t from-black/95 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-transparent pointer-events-none" />
 
           {/* Text over image */}
-          <div className="relative z-10 text-white w-full text-center pb-8 sm:pb-12 lg:pb-16 xl:pb-20">
-            <span 
+          <div className="relative z-10 text-white w-full text-left pb-8 sm:pb-12 lg:pb-16 xl:pb-20 px-6 sm:px-12 md:px-16 flex flex-col items-start justify-end">
+            <div className="w-[100px] sm:w-[120px] md:w-[140px] h-[60px] sm:h-[70px] md:h-[80px] relative mb-2 sm:mb-3">
+              <Image
+                src="/assets/vida-mia-logo-white.png"
+                alt="Vida Mía Logo"
+                fill
+                className="object-contain object-left"
+              />
+            </div>
+            <span
               className="text-[20px] sm:text-[24px] md:text-[28px] lg:text-[30px] leading-none block mb-1"
               style={{ fontFamily: 'var(--font-script), cursive', fontWeight: 600 }}
             >
               Pausa. Respira
             </span>
-            <h3 
-              className="text-[36px] sm:text-[48px] md:text-[60px] lg:text-[75px] xl:text-[85px] uppercase leading-none block"
+            <h3
+              className="text-[45px] sm:text-[60px] md:text-[80px] lg:text-[95px] xl:text-[110px] uppercase leading-none block font-black"
               style={{ fontFamily: 'var(--font-montserrat), sans-serif', fontWeight: 900, letterSpacing: '-2px' }}
             >
               DISFRUTA
@@ -571,13 +582,13 @@ export default function Home() {
         {/* Right Side: Map and Contact details */}
         <div className="w-full lg:w-1/2 p-5 sm:p-8 lg:p-10 xl:p-16 flex flex-col justify-center items-center text-center bg-white relative z-10">
           <div className="mb-6 sm:mb-8">
-            <span 
+            <span
               className="text-[30px] sm:text-[40px] md:text-[55px] text-[#8f4027] leading-none block mb-2"
               style={{ fontFamily: 'var(--font-script), cursive', fontWeight: 600 }}
             >
               Ten la pausa
             </span>
-            <h2 
+            <h2
               className="text-[40px] sm:text-[60px] md:text-[80px] lg:text-[95px] text-[#8f4027] leading-none uppercase block"
               style={{ fontFamily: 'var(--font-montserrat), sans-serif', fontWeight: 900, letterSpacing: '-2px' }}
             >
@@ -648,10 +659,10 @@ export default function Home() {
                 </div>
                 <div>
                   <h4 className="font-montserrat font-medium text-[14px] sm:text-[16px] md:text-[18px] text-[#7a4737] tracking-[-0.9px] leading-none mb-1">
-                    Vida Mía | <strong className="font-bold">Chalatenango</strong>
+                    Vida Mía bistro café | <strong className="font-bold">Valle Dulce</strong>
                   </h4>
                   <p className="font-montserrat font-normal text-[13px] sm:text-[14px] md:text-[16px] leading-[18px] sm:leading-[21px] text-[#7a4737] tracking-[-0.48px] max-w-[250px] sm:max-w-[290px]">
-                    6ta Calle Poniente, Barrio El Chile #A5-35, Chalatenango, Chalatenango
+                    Centro Comercial El Encuentro Valle Dulce, Local Mini Ancla 07, Porción 1 Hacienda El Ángel, Apopa, San Salvador
                   </p>
                 </div>
               </div>
@@ -674,7 +685,7 @@ export default function Home() {
             </div>
 
             <div className="flex-shrink-0 mt-4 sm:mt-0">
-              <button className="bg-[#4156a9] text-white px-4 sm:px-6 py-3 sm:py-4 font-quicksand font-semibold text-[13px] sm:text-[15px] tracking-[2px] sm:tracking-[3px] uppercase shadow-md flex items-center justify-center hover:bg-brand-blue/90 transition-colors w-[180px] sm:w-[200px] md:w-[228px]">
+              <button className="bg-[#4156a9] text-white px-4 sm:px-6 py-3 sm:py-4 font-quicksand font-semibold text-[13px] sm:text-[14px] tracking-[2px] sm:tracking-[3px] uppercase shadow-md flex items-center justify-center hover:bg-brand-blue/90 transition-colors w-[180px] sm:w-[200px] md:w-[228px]">
                 <Link href="/ubicaciones">IR A UBICACIONES</Link>
               </button>
             </div>
@@ -685,7 +696,7 @@ export default function Home() {
       {/* BRAND FOOTER — Figma node 1:190 */}
       <footer className="relative z-10 mt-10 sm:mt-16 w-full">
         {/* Curved arch shape using clip-path ellipse like Figma */}
-        <div 
+        <div
           className="relative w-full bg-[#8f4027] text-white"
           style={{
             clipPath: 'ellipse(85% 100% at 50% 100%)',
@@ -693,7 +704,7 @@ export default function Home() {
           }}
         >
           {/* Warm center glow */}
-          <div 
+          <div
             className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2"
             style={{
               width: '600px',
@@ -715,15 +726,15 @@ export default function Home() {
             </div>
 
             {/* Tagline - script font to match Figma */}
-            <span 
+            <span
               className="text-[20px] sm:text-[26px] md:text-[32px] leading-none tracking-normal text-white"
               style={{ fontFamily: 'var(--font-script), cursive', fontWeight: 600 }}
             >
               Más que café una
             </span>
-            
+
             {/* Main heading */}
-            <h3 
+            <h3
               className="mt-1 text-[32px] sm:text-[42px] md:text-[60px] lg:text-[72px] uppercase leading-none text-white"
               style={{ fontFamily: 'var(--font-montserrat), sans-serif', fontWeight: 900, letterSpacing: '-2px' }}
             >
@@ -789,7 +800,7 @@ export default function Home() {
         title="Chatea con nosotros"
       >
         <svg className="w-[26px] h-[26px] sm:w-[32px] sm:h-[32px] md:w-[36px] md:h-[36px] lg:w-[40px] lg:h-[40px]" viewBox="0 0 37 37" fill="none">
-          <path fillRule="evenodd" clipRule="evenodd" d="M18.3333 0C8.20783 0 0 8.20783 0 18.3333C0 21.7983 0.9625 25.0433 2.63633 27.808L1.001 33.3667C0.907105 33.6858 0.900927 34.0244 0.983115 34.3467C1.0653 34.6691 1.23282 34.9634 1.46806 35.1986C1.7033 35.4338 1.99757 35.6014 2.31993 35.6836C2.6423 35.7657 2.98085 35.7596 3.3 35.6657L8.85867 34.0303C11.7162 35.7593 14.9934 36.6712 18.3333 36.6667C28.4588 36.6667 36.6667 28.4588 36.6667 18.3333C36.6667 8.20783 28.4588 0 18.3333 0ZM14.1863 22.4822C17.8952 26.1892 21.4353 26.6787 22.6857 26.7245C24.5868 26.7942 26.4385 25.3422 27.159 23.6573C27.25 23.4477 27.283 23.2176 27.2546 22.9909C27.2262 22.7641 27.1375 22.5492 26.9977 22.3685C25.993 21.0852 24.6345 20.163 23.3072 19.2463C23.03 19.0547 22.6895 18.9778 22.3569 19.0319C22.0243 19.0859 21.7256 19.2665 21.5233 19.536L20.4233 21.2135C20.3655 21.3037 20.2754 21.3683 20.1714 21.3943C20.0675 21.4202 19.9576 21.4053 19.8642 21.3528C19.118 20.9257 18.0308 20.1997 17.2498 19.4187C16.4688 18.6377 15.7868 17.6 15.4037 16.9015C15.3562 16.8128 15.3424 16.7098 15.365 16.6117C15.3876 16.5136 15.445 16.427 15.5265 16.368L17.2205 15.1103C17.4623 14.9001 17.6183 14.6084 17.6588 14.2906C17.6994 13.9728 17.6217 13.6512 17.4405 13.387C16.6192 12.1843 15.6622 10.6553 14.2743 9.6415C14.0952 9.51171 13.8854 9.43078 13.6655 9.40667C13.4457 9.38256 13.2233 9.4161 13.0203 9.504C11.3337 10.2263 9.87433 12.078 9.944 13.9828C9.98983 15.2332 10.4793 18.7733 14.1863 22.4822Z" fill="white"/>
+          <path fillRule="evenodd" clipRule="evenodd" d="M18.3333 0C8.20783 0 0 8.20783 0 18.3333C0 21.7983 0.9625 25.0433 2.63633 27.808L1.001 33.3667C0.907105 33.6858 0.900927 34.0244 0.983115 34.3467C1.0653 34.6691 1.23282 34.9634 1.46806 35.1986C1.7033 35.4338 1.99757 35.6014 2.31993 35.6836C2.6423 35.7657 2.98085 35.7596 3.3 35.6657L8.85867 34.0303C11.7162 35.7593 14.9934 36.6712 18.3333 36.6667C28.4588 36.6667 36.6667 28.4588 36.6667 18.3333C36.6667 8.20783 28.4588 0 18.3333 0ZM14.1863 22.4822C17.8952 26.1892 21.4353 26.6787 22.6857 26.7245C24.5868 26.7942 26.4385 25.3422 27.159 23.6573C27.25 23.4477 27.283 23.2176 27.2546 22.9909C27.2262 22.7641 27.1375 22.5492 26.9977 22.3685C25.993 21.0852 24.6345 20.163 23.3072 19.2463C23.03 19.0547 22.6895 18.9778 22.3569 19.0319C22.0243 19.0859 21.7256 19.2665 21.5233 19.536L20.4233 21.2135C20.3655 21.3037 20.2754 21.3683 20.1714 21.3943C20.0675 21.4202 19.9576 21.4053 19.8642 21.3528C19.118 20.9257 18.0308 20.1997 17.2498 19.4187C16.4688 18.6377 15.7868 17.6 15.4037 16.9015C15.3562 16.8128 15.3424 16.7098 15.365 16.6117C15.3876 16.5136 15.445 16.427 15.5265 16.368L17.2205 15.1103C17.4623 14.9001 17.6183 14.6084 17.6588 14.2906C17.6994 13.9728 17.6217 13.6512 17.4405 13.387C16.6192 12.1843 15.6622 10.6553 14.2743 9.6415C14.0952 9.51171 13.8854 9.43078 13.6655 9.40667C13.4457 9.38256 13.2233 9.4161 13.0203 9.504C11.3337 10.2263 9.87433 12.078 9.944 13.9828C9.98983 15.2332 10.4793 18.7733 14.1863 22.4822Z" fill="white" />
         </svg>
       </a>
     </div>
