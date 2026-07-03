@@ -47,6 +47,8 @@ function ReservacionesContent() {
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const [honeypot, setHoneypot] = useState("");
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -61,6 +63,14 @@ function ReservacionesContent() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Evitar spambots mediante el campo honeypot (trampa)
+    if (honeypot.trim() !== "") {
+      console.warn("Spambot detectado mediante honeypot.");
+      // Simulamos que el envío fue exitoso para despistar al bot sin consumir recursos ni enviar correos vacíos
+      setShowConfirmation(true);
+      return;
+    }
     setIsSubmitting(true);
 
     const RESTAURANT_EMAILS: Record<string, string> = {
@@ -149,7 +159,7 @@ function ReservacionesContent() {
         {/* Hero Content */}
         <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-4">
           {/* Title row */}
-          <div className="flex items-center gap-2 sm:gap-4 md:gap-6 mb-2">
+          <div className="flex items-center gap-2 sm:gap-4 md:gap-6 mb-2 animate-fade-in-up">
             <span
               className="text-white text-[28px] sm:text-[45px] md:text-[55px] lg:text-[65px] leading-none"
               style={{ fontFamily: 'var(--font-script), cursive', fontWeight: 600 }}
@@ -167,7 +177,7 @@ function ReservacionesContent() {
 
           {/* Main Title */}
           <h1
-            className="text-white text-[40px] sm:text-[65px] md:text-[85px] lg:text-[105px] leading-none uppercase mb-6 sm:mb-8"
+            className="text-white text-[40px] sm:text-[65px] md:text-[85px] lg:text-[105px] leading-none uppercase mb-6 sm:mb-8 animate-fade-in-up delay-100"
             style={{ fontFamily: 'var(--font-montserrat), sans-serif', fontWeight: 900, letterSpacing: '-3px' }}
           >
             TE ESPERA
@@ -176,7 +186,7 @@ function ReservacionesContent() {
           {/* CTA Button */}
           <Link
             href="#reserva-form"
-            className="backdrop-blur-[2px] bg-black/14 border border-white text-white w-[180px] sm:w-[200px] md:w-[228px] h-[48px] sm:h-[54px] flex items-center justify-center tracking-[2px] sm:tracking-[3px] font-semibold text-[13px] sm:text-[15px] uppercase hover:bg-white hover:text-[#8f4027] transition-all duration-300 active:scale-95 shadow-md"
+            className="backdrop-blur-[2px] bg-black/14 border border-white text-white w-[180px] sm:w-[200px] md:w-[228px] h-[48px] sm:h-[54px] flex items-center justify-center tracking-[2px] sm:tracking-[3px] font-semibold text-[13px] sm:text-[15px] uppercase hover:bg-white hover:text-[#8f4027] transition-all duration-300 active:scale-95 shadow-md animate-fade-in-up delay-200"
           >
             ¡RESERVA AQUÍ!
           </Link>
@@ -188,7 +198,7 @@ function ReservacionesContent() {
         {/* Form Card - Positioned overlapping hero */}
         <div className="relative z-30 mx-auto max-w-[731px] -mt-[120px] sm:-mt-[180px] lg:-mt-[220px]">
           <div
-            className="backdrop-blur-[117px] bg-white/84 border border-white/50 shadow-[0px_4px_84px_rgba(0,0,0,0.09)] mx-4 sm:mx-6 lg:mx-0"
+            className="backdrop-blur-[117px] bg-white/84 border border-white/50 shadow-[0px_4px_84px_rgba(0,0,0,0.09)] mx-4 sm:mx-6 lg:mx-0 animate-scale-in delay-300"
             style={{ minHeight: '900px' }}
           >
             <form onSubmit={handleSubmit} className="p-6 sm:p-10 lg:p-16">
@@ -202,7 +212,7 @@ function ReservacionesContent() {
                   >
                     Nombre para reservación
                   </label>
-                  <div className="border-b border-black/30">
+                  <div className="border-b border-black/30 custom-input-line">
                     <input
                       type="text"
                       name="nombre"
@@ -223,7 +233,7 @@ function ReservacionesContent() {
                   >
                     Teléfono
                   </label>
-                  <div className="border-b border-black/30">
+                  <div className="border-b border-black/30 custom-input-line">
                     <input
                       type="tel"
                       name="telefono"
@@ -244,7 +254,7 @@ function ReservacionesContent() {
                   >
                     Correo electrónico
                   </label>
-                  <div className="border-b border-black/30">
+                  <div className="border-b border-black/30 custom-input-line">
                     <input
                       type="email"
                       name="correo"
@@ -265,7 +275,7 @@ function ReservacionesContent() {
                   >
                     Sucursal de reserva
                   </label>
-                  <div className="border-b border-black/30 relative">
+                  <div className="border-b border-black/30 relative custom-input-line">
                     <select
                       name="sucursal"
                       value={formData.sucursal}
@@ -296,7 +306,7 @@ function ReservacionesContent() {
                     >
                       Fecha de reserva
                     </label>
-                    <div className="border-b border-black/30 relative">
+                    <div className="border-b border-black/30 relative custom-input-line">
                       <input
                         type="date"
                         name="fecha"
@@ -316,7 +326,7 @@ function ReservacionesContent() {
                     >
                       Horario
                     </label>
-                    <div className="border-b border-black/30 relative">
+                    <div className="border-b border-black/30 relative custom-input-line">
                       <select
                         name="horario"
                         value={formData.horario}
@@ -391,7 +401,7 @@ function ReservacionesContent() {
                   >
                     Ocasión especial
                   </label>
-                  <div className="border-b border-black/30">
+                  <div className="border-b border-black/30 custom-input-line">
                     <input
                       type="text"
                       name="ocasion"
@@ -412,7 +422,7 @@ function ReservacionesContent() {
                   >
                     Comentarios o solicitudes especiales
                   </label>
-                  <div className="border-b border-black/30">
+                  <div className="border-b border-black/30 custom-input-line">
                     <textarea
                       name="comentarios"
                       value={formData.comentarios}
@@ -423,6 +433,18 @@ function ReservacionesContent() {
                       style={{ fontFamily: 'var(--font-montserrat), sans-serif', fontWeight: 400 }}
                     />
                   </div>
+                </div>
+
+                {/* Campo trampa para evitar bots (Honeypot) - Oculto del usuario humano */}
+                <div className="absolute overflow-hidden -top-[9999px] -left-[9999px] w-0 h-0 opacity-0 pointer-events-none" aria-hidden="true">
+                  <input
+                    type="text"
+                    name="confirm_website"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
                 </div>
 
                 {/* Submit Button */}
@@ -461,57 +483,57 @@ function ReservacionesContent() {
         <div className="w-full">
           <div className="flex flex-col md:flex-row gap-2 md:gap-3">
             {/* Left Column - Tall vertical image */}
-            <div className="relative w-full md:w-[28%] h-[350px] md:h-[550px]">
+            <div className="relative w-full md:w-[28%] h-[350px] md:h-[550px] overflow-hidden group">
               <Image
                 src={assets.gallery1}
                 alt="Interior Vida Mía con decoración"
                 fill
                 sizes="(max-width: 768px) 100vw, 28vw"
-                className="object-cover"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 cursor-zoom-in"
               />
             </div>
 
             {/* Center Column - 2 stacked images */}
             <div className="flex flex-col gap-2 md:gap-3 w-full md:w-[36%]">
-              <div className="relative h-[220px] md:h-[270px]">
+              <div className="relative h-[220px] md:h-[270px] overflow-hidden group">
                 <Image
                   src={assets.gallery4}
                   alt="Mostrador de postres Vida Mía"
                   fill
                   sizes="(max-width: 768px) 100vw, 36vw"
-                  className="object-cover"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 cursor-zoom-in"
                 />
               </div>
-              <div className="relative h-[220px] md:h-[270px]">
+              <div className="relative h-[220px] md:h-[270px] overflow-hidden group">
                 <Image
                   src={assets.gallery5}
                   alt="Interior Vida Mía con clientes"
                   fill
                   sizes="(max-width: 768px) 100vw, 36vw"
-                  className="object-cover"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 cursor-zoom-in"
                 />
               </div>
             </div>
 
             {/* Right Column - 3 images (1 top, 2 bottom) */}
             <div className="flex flex-col gap-2 md:gap-3 w-full md:w-[36%]">
-              <div className="relative h-[200px] md:h-[220px]">
+              <div className="relative h-[200px] md:h-[220px] overflow-hidden group">
                 <Image
                   src={assets.gallery2}
                   alt="Exterior Vida Mía"
                   fill
                   sizes="(max-width: 768px) 100vw, 36vw"
-                  className="object-cover"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 cursor-zoom-in"
                 />
               </div>
               <div className="flex gap-2 md:gap-3 h-[220px] md:h-[320px]">
-                <div className="relative w-full h-full">
+                <div className="relative w-full h-full overflow-hidden group">
                   <Image
                     src={assets.gallery3}
                     alt="Interior Vida Mía"
                     fill
                     sizes="(max-width: 768px) 100vw, 36vw"
-                    className="object-cover"
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 cursor-zoom-in"
                   />
                 </div>
 
