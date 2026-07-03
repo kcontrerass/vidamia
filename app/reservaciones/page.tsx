@@ -84,7 +84,7 @@ function ReservacionesContent() {
     console.log("Submitting reservation payload:", payload);
 
     try {
-      const response = await fetch("/api/reservaciones", {
+      const response = await fetch("https://workflow.aumenta.do/api/webhook/NdJ0CPPBsJeLfpWB", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -92,6 +92,7 @@ function ReservacionesContent() {
         body: JSON.stringify(payload),
       });
 
+      // Note: n8n webhook might return 200 or 201 but no body, so checking response.ok is safe
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
