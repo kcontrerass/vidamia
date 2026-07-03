@@ -32,7 +32,7 @@ function ReservacionesContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const initialSucursal = searchParams.get("sucursal") || "";
-  
+
   const [formData, setFormData] = useState({
     nombre: "",
     telefono: "",
@@ -45,6 +45,7 @@ function ReservacionesContent() {
     comentarios: "",
   });
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -58,10 +59,47 @@ function ReservacionesContent() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Reservation submitted:", formData);
-    setShowConfirmation(true);
+    setIsSubmitting(true);
+
+    const RESTAURANT_EMAILS: Record<string, string> = {
+      "chalatenango": "ventas@vidamia.cafe",
+      "paseo-venecia": "ventas.venecia@vidamia.cafe",
+      "valle-dulce": "ventas.apopa@vidamia.cafe",
+      "opico": "ventas.opico@vidamia.cafe",
+      "san-martin": "ventas.sanmartin@vidamia.cafe",
+      "aguilares": "ventas.aguilares@vidamia.cafe",
+    };
+
+    const targetEmail = RESTAURANT_EMAILS[formData.sucursal] || "ventas@vidamia.cafe";
+    const sucursalName = LOCATIONS.find(l => l.id === formData.sucursal)?.name || formData.sucursal;
+
+    const payload = {
+      ...formData,
+      sucursal_nombre: sucursalName,
+      correo_restaurante: targetEmail,
+    };
+
+    console.log("Submitting reservation payload:", payload);
+
+    try {
+      await fetch("https://workflow.aumenta.do/api/webhook/NdJ0CPPBsJeLfpWB", {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      setShowConfirmation(true);
+    } catch (err) {
+      console.error("Error submitting reservation:", err);
+      alert("Hubo un error al procesar tu solicitud de reservación. Por favor, intenta de nuevo.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleCloseConfirmation = () => {
@@ -88,13 +126,13 @@ function ReservacionesContent() {
 
         {/* Top gradient overlay */}
         <div className="absolute top-0 left-0 right-0 h-[329px] bg-gradient-to-b from-black/75 to-transparent z-10 pointer-events-none" />
-        
+
         {/* Bottom gradient overlay */}
         <div className="absolute bottom-0 left-0 right-0 h-[378px] bg-gradient-to-t from-black/35 to-transparent z-10 pointer-events-none" />
 
         {/* Glow effect behind text */}
         <div className="absolute top-[160px] sm:top-[200px] lg:top-[227px] left-1/2 -translate-x-1/2 w-[400px] sm:w-[500px] lg:w-[588px] h-[150px] sm:h-[180px] lg:h-[199px] z-5">
-          <div 
+          <div
             className="w-full h-full"
             style={{
               background: 'radial-gradient(ellipse at center, rgba(255,255,255,0.15) 0%, transparent 70%)',
@@ -107,14 +145,14 @@ function ReservacionesContent() {
         <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-4">
           {/* Title row */}
           <div className="flex items-center gap-2 sm:gap-4 md:gap-6 mb-2">
-            <span 
+            <span
               className="text-white text-[28px] sm:text-[45px] md:text-[55px] lg:text-[65px] leading-none"
               style={{ fontFamily: 'var(--font-script), cursive', fontWeight: 600 }}
             >
               tu mesa
             </span>
             <div className="w-[60px] sm:w-[120px] md:w-[160px] lg:w-[187px] h-[1px] bg-white opacity-80" />
-            <span 
+            <span
               className="text-white text-[28px] sm:text-[45px] md:text-[55px] lg:text-[65px] leading-none"
               style={{ fontFamily: 'var(--font-script), cursive', fontWeight: 600 }}
             >
@@ -123,7 +161,7 @@ function ReservacionesContent() {
           </div>
 
           {/* Main Title */}
-          <h1 
+          <h1
             className="text-white text-[40px] sm:text-[65px] md:text-[85px] lg:text-[105px] leading-none uppercase mb-6 sm:mb-8"
             style={{ fontFamily: 'var(--font-montserrat), sans-serif', fontWeight: 900, letterSpacing: '-3px' }}
           >
@@ -144,16 +182,16 @@ function ReservacionesContent() {
       <section id="reserva-form" className="relative w-full">
         {/* Form Card - Positioned overlapping hero */}
         <div className="relative z-30 mx-auto max-w-[731px] -mt-[120px] sm:-mt-[180px] lg:-mt-[220px]">
-          <div 
+          <div
             className="backdrop-blur-[117px] bg-white/84 border border-white/50 shadow-[0px_4px_84px_rgba(0,0,0,0.09)] mx-4 sm:mx-6 lg:mx-0"
             style={{ minHeight: '900px' }}
           >
             <form onSubmit={handleSubmit} className="p-6 sm:p-10 lg:p-16">
               <div className="flex flex-col gap-6 sm:gap-8 max-w-[420px] mx-auto">
-                
+
                 {/* Nombre para reservación */}
                 <div className="flex flex-col gap-2">
-                  <label 
+                  <label
                     className="text-[14px] sm:text-[15px] text-black tracking-[-0.3px]"
                     style={{ fontFamily: 'var(--font-montserrat), sans-serif', fontWeight: 500 }}
                   >
@@ -174,7 +212,7 @@ function ReservacionesContent() {
 
                 {/* Teléfono */}
                 <div className="flex flex-col gap-2">
-                  <label 
+                  <label
                     className="text-[14px] sm:text-[15px] text-black tracking-[-0.3px]"
                     style={{ fontFamily: 'var(--font-montserrat), sans-serif', fontWeight: 500 }}
                   >
@@ -195,7 +233,7 @@ function ReservacionesContent() {
 
                 {/* Correo electrónico */}
                 <div className="flex flex-col gap-2">
-                  <label 
+                  <label
                     className="text-[14px] sm:text-[15px] text-black tracking-[-0.3px]"
                     style={{ fontFamily: 'var(--font-montserrat), sans-serif', fontWeight: 500 }}
                   >
@@ -216,7 +254,7 @@ function ReservacionesContent() {
 
                 {/* Sucursal de reserva */}
                 <div className="flex flex-col gap-2">
-                  <label 
+                  <label
                     className="text-[14px] sm:text-[15px] text-black tracking-[-0.3px]"
                     style={{ fontFamily: 'var(--font-montserrat), sans-serif', fontWeight: 500 }}
                   >
@@ -237,7 +275,7 @@ function ReservacionesContent() {
                     </select>
                     <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <path d="M6 9L12 15L18 9" stroke="#242426" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M6 9L12 15L18 9" stroke="#242426" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </div>
                   </div>
@@ -247,7 +285,7 @@ function ReservacionesContent() {
                 <div className="flex flex-col sm:flex-row gap-6 sm:gap-10">
                   {/* Fecha de reserva */}
                   <div className="flex flex-col gap-2 flex-1 sm:w-[180px]">
-                    <label 
+                    <label
                       className="text-[14px] sm:text-[15px] text-black tracking-[-0.3px]"
                       style={{ fontFamily: 'var(--font-montserrat), sans-serif', fontWeight: 500 }}
                     >
@@ -267,7 +305,7 @@ function ReservacionesContent() {
 
                   {/* Horario */}
                   <div className="flex flex-col gap-2 flex-1 sm:w-[200px]">
-                    <label 
+                    <label
                       className="text-[14px] sm:text-[15px] text-black tracking-[-0.3px]"
                       style={{ fontFamily: 'var(--font-montserrat), sans-serif', fontWeight: 500 }}
                     >
@@ -295,7 +333,7 @@ function ReservacionesContent() {
                       </select>
                       <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                          <path d="M6 9L12 15L18 9" stroke="#242426" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M6 9L12 15L18 9" stroke="#242426" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                       </div>
                     </div>
@@ -304,7 +342,7 @@ function ReservacionesContent() {
 
                 {/* Cantidad de personas */}
                 <div className="flex flex-col gap-2">
-                  <label 
+                  <label
                     className="text-[14px] sm:text-[15px] text-black tracking-[-0.3px]"
                     style={{ fontFamily: 'var(--font-montserrat), sans-serif', fontWeight: 500 }}
                   >
@@ -318,10 +356,10 @@ function ReservacionesContent() {
                         className="w-6 h-6 flex items-center justify-center opacity-50 hover:opacity-100 transition-opacity"
                       >
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                          <path d="M5 12H19" stroke="black" strokeWidth="2" strokeLinecap="round"/>
+                          <path d="M5 12H19" stroke="black" strokeWidth="2" strokeLinecap="round" />
                         </svg>
                       </button>
-                      <span 
+                      <span
                         className="text-[16px] sm:text-[18px] text-black min-w-[20px] text-center"
                         style={{ fontFamily: 'var(--font-montserrat), sans-serif', fontWeight: 500 }}
                       >
@@ -333,7 +371,7 @@ function ReservacionesContent() {
                         className="w-6 h-6 flex items-center justify-center opacity-50 hover:opacity-100 transition-opacity"
                       >
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                          <path d="M12 5V19M5 12H19" stroke="black" strokeWidth="2" strokeLinecap="round"/>
+                          <path d="M12 5V19M5 12H19" stroke="black" strokeWidth="2" strokeLinecap="round" />
                         </svg>
                       </button>
                     </div>
@@ -342,7 +380,7 @@ function ReservacionesContent() {
 
                 {/* Ocasión especial */}
                 <div className="flex flex-col gap-2">
-                  <label 
+                  <label
                     className="text-[14px] sm:text-[15px] text-black tracking-[-0.3px]"
                     style={{ fontFamily: 'var(--font-montserrat), sans-serif', fontWeight: 500 }}
                   >
@@ -363,7 +401,7 @@ function ReservacionesContent() {
 
                 {/* Comentarios o solicitudes especiales */}
                 <div className="flex flex-col gap-2">
-                  <label 
+                  <label
                     className="text-[14px] sm:text-[15px] text-black tracking-[-0.3px]"
                     style={{ fontFamily: 'var(--font-montserrat), sans-serif', fontWeight: 500 }}
                   >
@@ -385,9 +423,10 @@ function ReservacionesContent() {
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  className="w-full sm:w-auto backdrop-blur-[2px] bg-[#4156a9] text-white h-[48px] sm:h-[54px] px-6 flex items-center justify-center tracking-[2px] sm:tracking-[3px] font-semibold text-[13px] sm:text-[15px] uppercase hover:bg-[#354b94] transition-all duration-300 active:scale-95 mt-4"
+                  disabled={isSubmitting}
+                  className={`w-full sm:w-auto backdrop-blur-[2px] bg-[#4156a9] text-white h-[48px] sm:h-[54px] px-6 flex items-center justify-center tracking-[2px] sm:tracking-[3px] font-semibold text-[13px] sm:text-[15px] uppercase hover:bg-[#354b94] transition-all duration-300 active:scale-95 mt-4 ${isSubmitting ? "opacity-50 cursor-not-allowed" : ""}`}
                 >
-                  CONFIRMAR RESERVA
+                  {isSubmitting ? "ENVIANDO..." : "CONFIRMAR RESERVA"}
                 </button>
               </div>
             </form>
@@ -399,13 +438,13 @@ function ReservacionesContent() {
       <section className="w-full py-16 sm:py-20 lg:py-28 bg-white">
         {/* Section Title */}
         <div className="text-center mb-12 sm:mb-16 px-4">
-          <span 
+          <span
             className="text-[32px] sm:text-[45px] md:text-[55px] text-[#8f4027] leading-none block"
             style={{ fontFamily: 'var(--font-script), cursive', fontWeight: 600 }}
           >
             Conoce nuestros
           </span>
-          <h2 
+          <h2
             className="text-[50px] sm:text-[70px] md:text-[95px] text-[#8f4027] leading-none uppercase"
             style={{ fontFamily: 'var(--font-montserrat), sans-serif', fontWeight: 900, letterSpacing: '-3px' }}
           >
@@ -465,7 +504,7 @@ function ReservacionesContent() {
                     className="object-cover"
                   />
                 </div>
-               
+
               </div>
             </div>
           </div>
@@ -474,7 +513,7 @@ function ReservacionesContent() {
 
       {/* FOOTER */}
       <footer className="relative z-10 mt-10 sm:mt-16 w-full">
-        <div 
+        <div
           className="relative w-full bg-[#8f4027] text-white"
           style={{
             clipPath: 'ellipse(85% 100% at 50% 100%)',
@@ -482,7 +521,7 @@ function ReservacionesContent() {
           }}
         >
           {/* Warm center glow */}
-          <div 
+          <div
             className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2"
             style={{
               width: '600px',
@@ -504,15 +543,15 @@ function ReservacionesContent() {
             </div>
 
             {/* Tagline */}
-            <span 
+            <span
               className="text-[20px] sm:text-[26px] md:text-[32px] leading-none tracking-normal text-white"
               style={{ fontFamily: 'var(--font-script), cursive', fontWeight: 600 }}
             >
               Más que café una
             </span>
-            
+
             {/* Main heading */}
-            <h3 
+            <h3
               className="mt-1 text-[32px] sm:text-[42px] md:text-[60px] lg:text-[72px] uppercase leading-none text-white"
               style={{ fontFamily: 'var(--font-montserrat), sans-serif', fontWeight: 900, letterSpacing: '-2px' }}
             >
@@ -575,13 +614,13 @@ function ReservacionesContent() {
       {showConfirmation && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
           {/* Backdrop with blur */}
-          <div 
+          <div
             className="absolute inset-0 bg-black/40 backdrop-blur-sm animate-fadeIn"
             onClick={handleCloseConfirmation}
           />
-          
+
           {/* Modal Content - centered */}
-          <div 
+          <div
             className="relative w-full max-w-[600px] animate-slideUp"
           >
             <div className="backdrop-blur-[37px] bg-[rgba(175,104,82,0.85)] border border-white/50 rounded-[20px] flex flex-col gap-4 items-center px-6 sm:px-10 py-10 sm:py-12 text-center">
@@ -600,7 +639,7 @@ function ReservacionesContent() {
                 <span className="font-quicksand font-semibold text-[13px] sm:text-[15px] tracking-[2px] sm:tracking-[3px] uppercase">
                   ¡Tu reserva ha sido
                 </span>
-                <h3 
+                <h3
                   className="text-[32px] sm:text-[45px] leading-none uppercase tracking-[-1px] sm:tracking-[-1.8px]"
                   style={{ fontFamily: 'var(--font-montserrat), sans-serif', fontWeight: 900 }}
                 >
@@ -609,7 +648,7 @@ function ReservacionesContent() {
               </div>
 
               {/* Description */}
-              <p 
+              <p
                 className="text-white/80 text-[14px] sm:text-[16px] leading-relaxed tracking-[-0.4px] max-w-[450px]"
                 style={{ fontFamily: 'var(--font-montserrat), sans-serif', fontWeight: 400 }}
               >

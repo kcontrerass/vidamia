@@ -60,7 +60,7 @@ const MENU_DATA: Record<string, FoodItem[]> = {
       id: 1,
       name: "DESAYUNO CLÁSICO",
       price: "$6.50",
-      description: "Huevos al gusto,acompañado de frijoles, salsa ranchera, plátanos fritos y carne asada",
+      description: "Huevos al gusto, acompañado de frijoles, salsa ranchera, plátanos fritos y carne asada",
       image: assets.entrana,
     },
     {
