@@ -253,6 +253,7 @@ export default function Home() {
               src={imgSrc}
               alt="Bistro slide image"
               fill
+              sizes="100vw"
               className="object-cover object-bottom"
               priority={idx === 0}
             />
@@ -344,6 +345,7 @@ export default function Home() {
             src="/assets/about-bg.jpg"
             alt=""
             fill
+            sizes="100vw"
             className="object-cover object-center"
           />
         </div>
@@ -357,7 +359,7 @@ export default function Home() {
             <div className="absolute top-[0px] left-[8px] bg-[#672b17] w-full h-[200px] md:h-[240px] lg:h-[320px] xl:h-[400px] transform rotate-[-5deg]" />
             <div className="relative bg-white p-[4px] md:p-[5px] lg:p-[6px] shadow-[0px_2px_12px_rgba(0,0,0,0.25)] transform rotate-[-15deg]">
               <div className="relative w-full h-[180px] md:h-[220px] lg:h-[300px] xl:h-[380px] overflow-hidden">
-                <Image src={assets.polaroidLeft} alt="Nuestros panaderos artesanales" fill className="object-cover" />
+                <Image src={assets.polaroidLeft} alt="Nuestros panaderos artesanales" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
               </div>
             </div>
           </div>
@@ -370,7 +372,7 @@ export default function Home() {
             <div className="absolute top-[-8px] right-[8px] bg-[#4156a9] w-full h-[200px] md:h-[240px] lg:h-[320px] xl:h-[400px] transform rotate-[12deg]" />
             <div className="relative bg-white p-[4px] md:p-[5px] lg:p-[6px] shadow-[0px_2px_12px_rgba(0,0,0,0.25)] transform rotate-[9deg]">
               <div className="relative w-full h-[180px] md:h-[220px] lg:h-[300px] xl:h-[380px] overflow-hidden">
-                <Image src={assets.polaroidRight} alt="Disfrutando en el bistro" fill className="object-cover" />
+                <Image src={assets.polaroidRight} alt="Disfrutando en el bistro" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
               </div>
             </div>
           </div>
@@ -492,6 +494,7 @@ export default function Home() {
                     src={item.image}
                     alt={item.name}
                     fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 330px"
                     className="object-cover object-center"
                   />
                   <div className="absolute inset-x-0 bottom-0 h-[100px] sm:h-[153px] bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
@@ -550,6 +553,7 @@ export default function Home() {
             src="/assets/shop-interior-waiter.png"
             alt="Interior acogedor Vida Mía Bistro"
             fill
+            sizes="(max-width: 1024px) 100vw, 50vw"
             className="object-cover object-center"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-transparent pointer-events-none" />
@@ -561,6 +565,7 @@ export default function Home() {
                 src="/assets/vida-mia-logo-white.png"
                 alt="Vida Mía Logo"
                 fill
+                sizes="(max-width: 768px) 120px, 140px"
                 className="object-contain object-left"
               />
             </div>

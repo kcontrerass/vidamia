@@ -119,6 +119,7 @@ function ReservacionesContent() {
             src={assets.heroBg}
             alt="Mesa con comida Vida Mía"
             fill
+            sizes="100vw"
             className="object-cover object-center"
             priority
           />
@@ -461,6 +462,7 @@ function ReservacionesContent() {
                 src={assets.gallery1}
                 alt="Interior Vida Mía con decoración"
                 fill
+                sizes="(max-width: 768px) 100vw, 28vw"
                 className="object-cover"
               />
             </div>
@@ -472,6 +474,7 @@ function ReservacionesContent() {
                   src={assets.gallery4}
                   alt="Mostrador de postres Vida Mía"
                   fill
+                  sizes="(max-width: 768px) 100vw, 36vw"
                   className="object-cover"
                 />
               </div>
@@ -480,6 +483,7 @@ function ReservacionesContent() {
                   src={assets.gallery5}
                   alt="Interior Vida Mía con clientes"
                   fill
+                  sizes="(max-width: 768px) 100vw, 36vw"
                   className="object-cover"
                 />
               </div>
@@ -492,6 +496,7 @@ function ReservacionesContent() {
                   src={assets.gallery2}
                   alt="Exterior Vida Mía"
                   fill
+                  sizes="(max-width: 768px) 100vw, 36vw"
                   className="object-cover"
                 />
               </div>
@@ -501,6 +506,7 @@ function ReservacionesContent() {
                     src={assets.gallery3}
                     alt="Interior Vida Mía"
                     fill
+                    sizes="(max-width: 768px) 100vw, 36vw"
                     className="object-cover"
                   />
                 </div>
@@ -538,6 +544,7 @@ function ReservacionesContent() {
                 src="/assets/vida-mia-logo-footer.svg"
                 alt="Vida Mía Logo"
                 fill
+                sizes="(max-width: 640px) 180px, (max-width: 768px) 220px, 260px"
                 className="object-contain"
               />
             </div>
@@ -567,6 +574,7 @@ function ReservacionesContent() {
                     src={assets.phoneIcon}
                     alt=""
                     fill
+                    sizes="20px"
                     className="object-contain brightness-0 invert"
                   />
                 </div>
@@ -587,7 +595,7 @@ function ReservacionesContent() {
                   ¡Síguenos en!
                 </p>
                 <div className="relative mt-4 h-[28px] w-[110px]">
-                  <Image src={assets.socialsIcon} alt="Redes sociales" fill className="object-contain" />
+                  <Image src={assets.socialsIcon} alt="Redes sociales" fill sizes="110px" className="object-contain" />
                   <a href="https://www.facebook.com/share/14g6nA8Z4oi/" target="_blank" rel="noopener noreferrer" className="absolute left-0 top-0 h-full w-1/3" aria-label="Facebook" />
                   <a href="https://www.instagram.com/vidamiabistrocafe" target="_blank" rel="noopener noreferrer" className="absolute left-1/3 top-0 h-full w-1/3" aria-label="Instagram" />
                   <a href="https://www.tiktok.com/@vidamiabistrocafe" target="_blank" rel="noopener noreferrer" className="absolute left-2/3 top-0 h-full w-1/3" aria-label="TikTok" />
