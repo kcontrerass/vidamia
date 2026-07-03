@@ -521,7 +521,7 @@ export default function Home() {
                       <div className="flex items-center gap-1">
                         <span className="font-montserrat font-bold text-[12px] sm:text-[13px] lg:text-[14px] text-[#af6852]">5 estrellas</span>
                       </div>
-                      <Link href="#ubicaciones" className="font-montserrat font-normal text-[12px] sm:text-[13px] lg:text-[14px] text-[#7a4737] underline tracking-[-0.4px] hover:text-[#4156a9]">
+                      <Link href="/ubicaciones" className="font-montserrat font-normal text-[12px] sm:text-[13px] lg:text-[14px] text-[#7a4737] underline tracking-[-0.4px] hover:text-[#4156a9]">
                         Ver Ubicaciones
                       </Link>
                     </div>

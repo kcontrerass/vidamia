@@ -84,14 +84,17 @@ function ReservacionesContent() {
     console.log("Submitting reservation payload:", payload);
 
     try {
-      await fetch("https://workflow.aumenta.do/api/webhook/NdJ0CPPBsJeLfpWB", {
+      const response = await fetch("/api/reservaciones", {
         method: "POST",
-        mode: "no-cors",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(payload),
       });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
 
       setShowConfirmation(true);
     } catch (err) {
