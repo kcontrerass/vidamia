@@ -30,6 +30,9 @@ const dancingScript = Dancing_Script({
 export const metadata: Metadata = {
   title: "Vida Mía Pastelería & Bistro Café",
   description: "Una experiencia única de sabor - Pan hecho en casa y repostería artesanal.",
+  icons: {
+    icon: "/assets/9e7da1f34b321d13277dec961b81b343ff15ef2f.svg",
+  },
 };
 
 export default function RootLayout({

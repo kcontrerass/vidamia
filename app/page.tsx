@@ -535,11 +535,15 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Under Menu Button */}
           <div className="mt-16 pb-10 flex justify-center">
-            <button className="bg-[#4156a9] hover:bg-brand-blue/90 text-white font-quicksand font-semibold text-[15px] tracking-[3px] uppercase w-[228px] h-[54px] transition-all shadow-md active:scale-95 flex items-center justify-center">
+            <Link
+              href="https://linktr.ee/vidamiabistrocafe"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#4156a9] hover:bg-brand-blue/90 text-white font-quicksand font-semibold text-[15px] tracking-[3px] uppercase w-[228px] h-[54px] transition-all shadow-md active:scale-95 flex items-center justify-center"
+            >
               IR AL MENÚ
-            </button>
+            </Link>
           </div>
 
         </div>

@@ -31,7 +31,7 @@ export default function Header() {
             Quiénes Somos
             <span className="absolute bottom-[-4px] left-0 w-full h-[2px] bg-amber-200 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200" />
           </Link>
-          <Link href="/#menu" className="hover:text-amber-200 transition-colors duration-200 relative group">
+          <Link href="https://linktr.ee/vidamiabistrocafe" target="_blank" rel="noopener noreferrer" className="hover:text-amber-200 transition-colors duration-200 relative group">
             Menú
             <span className="absolute bottom-[-4px] left-0 w-full h-[2px] bg-amber-200 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200" />
           </Link>
@@ -89,7 +89,9 @@ export default function Header() {
               Quiénes Somos
             </Link>
             <Link
-              href="/#menu"
+              href="https://linktr.ee/vidamiabistrocafe"
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setMobileMenuOpen(false)}
               className="hover:text-amber-200 transition-colors py-2 border-b border-white/5"
             >
